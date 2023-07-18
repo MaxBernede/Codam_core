@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/03 15:05:51 by jmeruma       #+#    #+#                 */
-/*   Updated: 2023/07/15 16:15:26 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 12:19:03 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			ft_strlen(const char *s);
 int			ft_atoi(const char *str);
 int			ft_2d_arrlen(char **p_arr);
 int			ft_atoi_overflow(const char *str, int *numb);
+int			ft_atoll_overflow(const char *str, long long *numb);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			put_basetoa(const char *baseset, int base, unsigned long nb);

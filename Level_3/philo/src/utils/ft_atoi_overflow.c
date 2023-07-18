@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_atoi_overflow.c                                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
+/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 15:05:51 by jmeruma       #+#    #+#                 */
-/*   Updated: 2023/07/17 18:18:21 by mbernede      ########   odam.nl         */
+/*   Created: 2023/07/18 12:11:21 by mbernede      #+#    #+#                 */
+/*   Updated: 2023/07/18 12:11:22 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

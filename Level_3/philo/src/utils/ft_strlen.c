@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   error_input.c                                      :+:    :+:            */
+/*   ft_isalpha.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*   By: jmeruma <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/07/17 15:15:25 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/18 12:23:09 by mbernede      ########   odam.nl         */
+/*   Created: 2022/10/03 15:05:51 by jmeruma       #+#    #+#                 */
+/*   Updated: 2022/10/03 15:05:53 by jmeruma       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-
-int	check_input(char **argv)
+int	ft_strlen(const char *s)
 {
 	int	i;
 
-	i = 1;
-	while (argv[i])
-	{
-		if (ft_is_number(argv[i]))
-			return (1);
-		if (ft_strlen(argv[i]) > 10)
-			return (1);
-		++i;
-	}
-	return (0);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

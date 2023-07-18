@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_atoh.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
+/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/12/06 17:24:49 by jmeruma       #+#    #+#                 */
-/*   Updated: 2023/07/17 18:18:43 by mbernede      ########   odam.nl         */
+/*   Created: 2023/07/18 12:10:49 by mbernede      #+#    #+#                 */
+/*   Updated: 2023/07/18 12:11:17 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

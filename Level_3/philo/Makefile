@@ -3,11 +3,11 @@ NAME		:=	philo
 
 DEBUGGING	?=
 
-LIBS		:=	./libft/libft.a -lreadline -I /Users/$(USER)/.homebrew/opt/readline/include -L/Users/$(USER)/.homebrew/opt/readline/lib
+LIBS		:=
 
-HEADER		:=	-I libft -I includes -I /Users/$(USER)/.homebrew/opt/readline/include
+HEADER		:=	-I includes
 
-HEADERS		:=	libft/libft.h includes/philo.h
+HEADERS		:=	includes/philo.h
 OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
@@ -15,18 +15,23 @@ SRC_DIR 	:=	./src
 CFLAGS	:=	-Wall -Wextra
 RM		:=	rm -rf
 
-SRC 	:=	main.c				\
-			actions.c			\
-			change.c			\
-			check.c				\
-			error_input.c		\
-			fill.c				\
-			init.c				\
-			logic.c				\
-			philo.c				\
-			time.c				\
-			utils/ft_is_number.c\
-			utils/frees.c 		\
+SRC 	:=	main.c						\
+			actions.c					\
+			change.c					\
+			check.c						\
+			error_input.c				\
+			fill.c						\
+			init.c						\
+			logic.c						\
+			philo.c						\
+			time.c						\
+			utils/ft_is_number.c		\
+			utils/frees.c 				\
+			utils/ft_atoi_overflow.c	\
+			utils/ft_atoll_overflow.c	\
+			utils/ft_strlen.c			\
+			utils/ft_isdigit.c			\
+			utils/ft_putstr_fd.c		\
 
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRC_DIR)/,$(SRC))
@@ -57,7 +62,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo $(Yellow) Building.. 🏠$(Color_Off)
 	@echo -----------------------
-	@$(MAKE) -C libft bonus
 	@$(CC) $^ -lpthread $(LIBS) $(DEBUGGING) -o $(NAME)
 	@echo $(Green) Complete ✅ $(Color_Off)
 	@echo -----------------------
@@ -74,14 +78,12 @@ $(OBJ_DIR):
 clean:
 	@echo $(Cyan) Sweeping.. 💥 $(Color_Off)
 	@echo -----------------------
-	@$(MAKE) -C libft clean
-	@$(RM) $(OBJ) $(BON_OBJ)
+	@$(RM) $(OBJ)
 
 fclean:
 	@echo $(Red) Thorough sweeping.. 💥 $(Color_Off)
 	@echo -----------------------
-	@$(MAKE) -C libft fclean
-	@$(RM) $(NAME) $(OBJ) $(BON_OBJ)
+	@$(RM) $(NAME) $(OBJ)
 
 re: fclean all
 

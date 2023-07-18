@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:57:21 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/17 17:36:53 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 13:06:52 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ void	*routine(void *arg)
 
 	phi = (t_philo_thread *)arg;
 	phi->philo->start_time = current_time();
+	//printf("Start %d: %lld\n",phi->philo->id, phi->philo->start_time);
 	change_t_died(phi);
 	if (phi->arg->philo_nb == 1)
 		return (one_philo(phi));
 	if (phi->philo->id % 2 == 1)
 	{
 		print_msg(*phi->philo, V_THINK);
-		usleep(2000);
+		usleep(1000);
 	}
 	while (1)
 	{

@@ -6,17 +6,17 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/17 18:20:22 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 13:18:23 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include "libft.h"
 # include <pthread.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <errno.h>
 # include <sys/time.h>
 # include <stdbool.h>
@@ -96,7 +96,7 @@ int				check_all_dead(t_rule *rules);
 int				check_input(char **argv);
 
 //fill.c
-void			init_fill(t_rule *rules, char **argv, t_args *arg);
+int				init_fill(t_rule *rules, char **argv, t_args *arg);
 void			fill_philos(t_rule *rules);
 void			fill_philo_solo(t_rule *rules, t_philo_thread *phi);
 void			fill_to_null(t_rule *rules, t_philo_thread *phi);
@@ -121,5 +121,10 @@ int				ft_is_number(char *str);
 void			free_rule(t_rule *rules);
 void			destroy_all(t_rule *rules, t_philo_thread *phi);
 void			destroy(t_rule *rules, t_philo_thread *phi);
+int				ft_strlen(const char *s);
+int				ft_atoi_overflow(const char *str, int *numb);
+int				ft_atoll_overflow(const char *str, long long *numb);
+int				ft_isdigit(int c);
+void			ft_putstr_fd(char *s, int fd);
 
 #endif

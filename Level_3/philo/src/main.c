@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:58:21 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/17 18:20:38 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 12:56:26 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	main(int argc, char **argv)
 		return (ft_putstr_fd(ERR_ARG, 2), 1);
 	if (check_input(argv))
 		return (ft_putstr_fd(ERR, 2), 1);
-	init_fill(&rules, argv, &arg);
+	if (init_fill(&rules, argv, &arg))
+		return (ft_putstr_fd(ERR, 2), 1);
 	if (!arg.philo_nb)
 		return (ft_putstr_fd(ERR, 2), 1);
 	if (init_all(&rules, &phi))
