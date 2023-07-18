@@ -70,7 +70,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) | $(OBJ_DIR)
 	@mkdir -p $(@D)
 	@echo $(Purple) Compiling.. 🧱 $< $(Color_Off)
 	@echo -----------------------
-	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	@$(CC) $(DEBUGGING) $(CFLAGS) $(HEADER) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir $@

@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/18 17:30:05 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 19:03:07 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_rules
 	pthread_mutex_t	*m_eat;
 	pthread_mutex_t	*m_end;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	stop_die;
+	pthread_mutex_t	stop_eat;
 	long long		start_time;
 	int				end;
 	int				end_loop;
