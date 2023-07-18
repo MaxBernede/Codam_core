@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:59:34 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/18 13:05:27 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 16:00:48 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	init_fill(t_rule *rules, char **argv, t_args *arg)
 	else
 		arg->eat_max = -1;
 	rules->arg = arg;
+	rules->end = 0;
+	rules->end_loop = 0;
 	return (error);
 }
 

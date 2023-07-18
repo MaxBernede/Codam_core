@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:54:03 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/17 15:15:11 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 17:22:33 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	check_all_dead(t_rule *rules)
 	{
 		if (check_died(&rules->philos[i]))
 		{
-			print_msg(rules->philos[i], V_DIED);
+			change_all_end(rules);
+			print_msg(rules->philos[i], V_DIED, 0);
 			return (1);
 		}
 		++i;

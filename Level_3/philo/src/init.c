@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:59:34 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/18 13:05:31 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 17:43:12 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ int	init_mutex(t_rule *rules)
 	return (0);
 }
 
-int	init_threads(t_rule *rules, t_philo_thread *philo_solo)
+int	init_threads(t_rule *rules, t_philo_thread *phi)
 {
 	int	i;
 
 	i = 0;
+	// rules->start_time = current_time();
 	while (i < rules->arg->philo_nb)
 	{
-		if (pthread_create(&rules->threads[i], NULL, &routine, &philo_solo[i]))
+		// phi[i].philo->start_time = rules->start_time;
+		if (pthread_create(&rules->threads[i], NULL, &routine, &phi[i]))
 			return (1);
 		++i;
 	}

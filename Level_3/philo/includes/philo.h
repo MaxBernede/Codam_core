@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/18 13:18:23 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/18 17:30:05 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ typedef struct s_rules
 	pthread_mutex_t	*m_eat;
 	pthread_mutex_t	*m_end;
 	pthread_mutex_t	*forks;
+	long long		start_time;
+	int				end;
+	int				end_loop;
 }	t_rule;
 
 typedef struct s_philo_thread
@@ -78,7 +81,7 @@ typedef struct s_philo_thread
 }	t_philo_thread;
 
 //actions.c
-void			print_msg(t_philo phi, int msg);
+void			print_msg(t_philo phi, int msg, int check);
 void			start_sleep(t_philo_thread *phi);
 void			try_eat(t_philo_thread *phi);
 
