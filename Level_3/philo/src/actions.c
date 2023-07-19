@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 14:57:35 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 17:49:53 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 19:01:04 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ void	print_msg(t_philo phi, int msg, int check)
 {
 	long long	time;
 
-	if (check && !check_t_alive(phi))
-		return ;
 	time = philo_time_lived(phi);
+	pthread_mutex_lock(phi.m_alive);
+	if (check && !check_t_alive_deadlock(phi))
+	{
+		pthread_mutex_unlock(phi.m_alive);
+		return ;
+	}
 	if (msg == V_TAKE_FORK)
 		printf("%lld %d has taken a fork\n", time, phi.id);
 	else if (msg == V_EAT)
@@ -29,6 +33,7 @@ void	print_msg(t_philo phi, int msg, int check)
 		printf("%lld %d is sleeping\n", time, phi.id);
 	else
 		printf("%lld %d died\n", time, phi.id);
+	pthread_mutex_unlock(phi.m_alive);
 }
 
 void	start_sleep(t_philo_thread *phi)

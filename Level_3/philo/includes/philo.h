@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 17:43:18 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 19:00:36 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void			change_all_end(t_rule *rules);
 int				check_alive(t_philo philo);
 int				check_t_alive(t_philo philo);
 int				check_all_dead(t_rule *rules);
+int				check_t_alive_deadlock(t_philo philo);
 
 //error_input.c
 int				check_input(char **argv);

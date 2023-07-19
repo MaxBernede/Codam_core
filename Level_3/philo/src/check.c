@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:54:03 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 18:54:42 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 19:01:28 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int	check_t_alive(t_philo philo)
 	return (1);
 }
 
+int	check_t_alive_deadlock(t_philo philo)
+{
+	if (philo.alive == false || current_time() >= philo.t_die)
+		return (0);
+	return (1);
+}
 
 // i changed it to check first the dead ones
 int	check_all_dead(t_rule *rules)
