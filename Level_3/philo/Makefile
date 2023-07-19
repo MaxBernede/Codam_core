@@ -28,7 +28,7 @@ SRC 	:=	main.c						\
 			utils/ft_is_number.c		\
 			utils/frees.c 				\
 			utils/ft_atoi_overflow.c	\
-			utils/ft_atoll_overflow.c	\
+			utils/ft_atoll.c			\
 			utils/ft_strlen.c			\
 			utils/ft_isdigit.c			\
 			utils/ft_putstr_fd.c		\

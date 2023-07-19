@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/18 19:03:07 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 16:26:10 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,22 @@
 typedef struct s_philos
 {
 	int				id;
-	long long		start_time;
-	long long		time_die;
-	int				meals_eaten;
-	bool			end;
-	pthread_mutex_t	*m_died;
-	pthread_mutex_t	*m_eat;
-	pthread_mutex_t	*m_end;
+	long long		t_start;
+	int				meals;
+	bool			alive;
+	long long		t_die;
+	pthread_mutex_t	*m_alive;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 }	t_philo;
 
 typedef struct s_args
 {
-	int			philo_nb;
+	int			phi_nb;
 	long long	t_to_die;
 	long long	t_to_eat;
 	long long	t_to_sleep;
 	int			eat_max;
-	long long	start_time;
 }	t_args;
 
 typedef struct s_rules
@@ -65,15 +62,10 @@ typedef struct s_rules
 	t_args			*arg;
 	pthread_t		*threads;
 	t_philo			*philos;
-	pthread_mutex_t	*m_died;
-	pthread_mutex_t	*m_eat;
-	pthread_mutex_t	*m_end;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	stop_die;
-	pthread_mutex_t	stop_eat;
-	long long		start_time;
-	int				end;
-	int				end_loop;
+	pthread_mutex_t	*m_alive;
+	pthread_mutex_t	m_stop_loop;
+	int				kill_loop;
 }	t_rule;
 
 typedef struct s_philo_thread
@@ -89,12 +81,11 @@ void			try_eat(t_philo_thread *phi);
 
 //change.c
 void			change_t_died(t_philo_thread *phi);
-void			change_eat_nb(t_philo_thread *phi);
 void			change_all_end(t_rule *rules);
 
 //check.c
 int				check_alive(t_philo philo);
-int				check_all_eat(t_rule *rules);
+int				check_t_alive(t_philo philo);
 int				check_all_dead(t_rule *rules);
 
 //error_input.c
@@ -112,14 +103,16 @@ int				init_all(t_rule *rules, t_philo_thread **phi);
 //logic.c
 int				start(t_rule *rules);
 
+//main.c
+void			wait_all_threads(t_rule *rules);
+
 //philo.c
-t_philo_thread	*philo_creator(t_rule *rules, int i, t_philo_thread *s_philo);
 void			*routine(void *arg);
 
 //time.c
 long long		current_time(void);
 long long		philo_time_lived(t_philo phi);
-void			mini_sleep(int time, t_philo_thread *phi);
+int				mini_sleep(int time, t_philo_thread *phi);
 
 //UTILS
 int				ft_is_number(char *str);
@@ -128,7 +121,7 @@ void			destroy_all(t_rule *rules, t_philo_thread *phi);
 void			destroy(t_rule *rules, t_philo_thread *phi);
 int				ft_strlen(const char *s);
 int				ft_atoi_overflow(const char *str, int *numb);
-int				ft_atoll_overflow(const char *str, long long *numb);
+long long		ft_atoll(const char *nb);
 int				ft_isdigit(int c);
 void			ft_putstr_fd(char *s, int fd);
 

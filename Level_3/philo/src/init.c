@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:59:34 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/18 17:43:12 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 16:09:09 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ int	init_mutex(t_rule *rules)
 	int	i;
 
 	i = 0;
-	while (i < rules->arg->philo_nb)
+	if (pthread_mutex_init(&rules->m_stop_loop, NULL))
+		return (1);
+	while (i < rules->arg->phi_nb)
 	{
 		if (pthread_mutex_init(&rules->forks[i], NULL))
 			return (1);
-		if (pthread_mutex_init(&rules->m_died[i], NULL))
-			return (1);
-		if (pthread_mutex_init(&rules->m_eat[i], NULL))
-			return (1);
-		if (pthread_mutex_init(&rules->m_end[i], NULL))
+		if (pthread_mutex_init(&rules->m_alive[i], NULL))
 			return (1);
 		++i;
 	}
@@ -36,32 +34,22 @@ int	init_threads(t_rule *rules, t_philo_thread *phi)
 {
 	int	i;
 
-	i = 0;
-	// rules->start_time = current_time();
-	while (i < rules->arg->philo_nb)
+	i = -1;
+	while (++i < rules->arg->phi_nb)
 	{
-		// phi[i].philo->start_time = rules->start_time;
 		if (pthread_create(&rules->threads[i], NULL, &routine, &phi[i]))
 			return (1);
-		++i;
 	}
-	i = 0;
 	return (0);
 }
 
 int	alloc_mutexes(t_rule *rules)
 {
-	rules->forks = malloc (sizeof(pthread_mutex_t) * rules->arg->philo_nb);
+	rules->forks = malloc (sizeof(pthread_mutex_t) * rules->arg->phi_nb);
 	if (!rules->forks)
 		return (1);
-	rules->m_died = malloc (sizeof(pthread_mutex_t) * rules->arg->philo_nb);
-	if (!rules->m_died)
-		return (1);
-	rules->m_eat = malloc (sizeof(pthread_mutex_t) * rules->arg->philo_nb);
-	if (!rules->m_eat)
-		return (1);
-	rules->m_end = malloc (sizeof(pthread_mutex_t) * rules->arg->philo_nb);
-	if (!rules->m_end)
+	rules->m_alive = malloc (sizeof(pthread_mutex_t) * rules->arg->phi_nb);
+	if (!rules->m_alive)
 		return (1);
 	return (0);
 }
@@ -69,15 +57,15 @@ int	alloc_mutexes(t_rule *rules)
 int	init_all(t_rule *rules, t_philo_thread **phi)
 {
 	fill_to_null(rules, *phi);
-	rules->threads = malloc (sizeof(pthread_t) * rules->arg->philo_nb);
+	rules->threads = malloc (sizeof(pthread_t) * rules->arg->phi_nb);
 	if (!rules->threads)
 		return (1);
-	rules->philos = malloc (sizeof(t_philo) * rules->arg->philo_nb);
+	rules->philos = malloc (sizeof(t_philo) * rules->arg->phi_nb);
 	if (!rules->philos)
 		return (1);
 	if (alloc_mutexes(rules))
 		return (1);
-	*phi = malloc(sizeof(t_philo_thread) * rules->arg->philo_nb);
+	*phi = malloc(sizeof(t_philo_thread) * rules->arg->phi_nb);
 	if (!phi)
 		return (1);
 	if (init_mutex(rules))

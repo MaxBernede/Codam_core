@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:58:21 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/18 19:04:04 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 15:56:22 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	wait_all_threads(t_rule *rules)
 	int	i;
 
 	i = 0;
-	while (i < rules->arg->philo_nb)
+	while (i < rules->arg->phi_nb)
 	{
 		if (pthread_join(rules->threads[i], NULL))
 		{
@@ -45,15 +45,16 @@ int	main(int argc, char **argv)
 		return (ft_putstr_fd(ERR, 2), 1);
 	if (init_fill(&rules, argv, &arg))
 		return (ft_putstr_fd(ERR, 2), 1);
-	if (!arg.philo_nb)
-		return (ft_putstr_fd(ERR, 2), 1);
+	if (!arg.phi_nb)
+		return (ft_putstr_fd(ERR, 2), 0);
+	if (!arg.eat_max)
+		return (0);
 	if (init_all(&rules, &phi))
 	{
 		destroy(&rules, phi);
 		return (ft_putstr_fd(ERR, 2), 1);
 	}
 	start(&rules);
-	wait_all_threads(&rules);
 	destroy_all(&rules, phi);
 	return (0);
 }
