@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 16:26:10 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 17:43:18 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void			try_eat(t_philo_thread *phi);
 
 //change.c
 void			change_t_died(t_philo_thread *phi);
+void			change_end(t_philo *philo);
 void			change_all_end(t_rule *rules);
 
 //check.c

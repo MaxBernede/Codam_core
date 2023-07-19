@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:57:21 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 15:53:56 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 18:53:56 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	*routine(void *arg)
 	}
 	while (phi->philo->meals)
 	{
-		if (!check_alive(*phi->philo))
+		if (!check_t_alive(*phi->philo))
+		{
+			change_end(phi->philo);
 			break ;
+		}
 		try_eat(phi);
 		--phi->philo->meals;
 		start_sleep(phi);

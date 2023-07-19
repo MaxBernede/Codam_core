@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:54:03 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 15:51:00 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 18:54:42 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,22 @@ int	check_t_alive(t_philo philo)
 	return (1);
 }
 
+
+// i changed it to check first the dead ones
 int	check_all_dead(t_rule *rules)
 {
 	int	i;
 
+	i = -1;
+	while (++i < rules->arg->phi_nb)
+	{
+		if (!check_alive(rules->philos[i]))
+		{
+			change_all_end(rules);
+			print_msg(rules->philos[i], V_DIED, 0);
+			return (1);
+		}
+	}
 	i = -1;
 	while (++i < rules->arg->phi_nb)
 	{

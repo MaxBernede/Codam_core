@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 14:57:35 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 16:21:00 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 17:49:53 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_msg(t_philo phi, int msg, int check)
 {
 	long long	time;
 
-	if (check && !check_alive(phi))
+	if (check && !check_t_alive(phi))
 		return ;
 	time = philo_time_lived(phi);
 	if (msg == V_TAKE_FORK)
@@ -34,7 +34,8 @@ void	print_msg(t_philo phi, int msg, int check)
 void	start_sleep(t_philo_thread *phi)
 {
 	print_msg(*phi->philo, V_SLEEP, 1);
-	mini_sleep(phi->arg->t_to_sleep, phi);
+	if (mini_sleep(phi->arg->t_to_sleep, phi))
+		return ;
 	print_msg(*phi->philo, V_THINK, 1);
 }
 
@@ -46,7 +47,11 @@ void	try_eat(t_philo_thread *phi)
 	print_msg(*phi->philo, V_TAKE_FORK, 1);
 	print_msg(*phi->philo, V_EAT, 1);
 	if (mini_sleep(phi->arg->t_to_eat, phi))
+	{
+		pthread_mutex_unlock(phi->philo->l_fork);
+		pthread_mutex_unlock(phi->philo->r_fork);
 		return ;
+	}
 	pthread_mutex_unlock(phi->philo->l_fork);
 	pthread_mutex_unlock(phi->philo->r_fork);
 	change_t_died(phi);

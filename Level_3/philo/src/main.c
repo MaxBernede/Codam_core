@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:58:21 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 15:56:22 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 18:32:38 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char **argv)
 	t_args			arg;
 	t_philo_thread	*phi;
 
+	//atexit(fun);
 	if (argc < 5 || argc > 6)
 		return (ft_putstr_fd(ERR_ARG, 2), 1);
 	if (check_input(argv))

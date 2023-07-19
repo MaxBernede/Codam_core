@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:55:14 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 14:45:29 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/19 18:27:30 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	destroy_mutexes(t_rule *rules)
 		pthread_mutex_destroy(&rules->forks[i]);
 		pthread_mutex_destroy(&rules->m_alive[i]);
 	}
+	pthread_mutex_destroy(&rules->m_stop_loop);
 }
 
 void	free_rule(t_rule *rules)
