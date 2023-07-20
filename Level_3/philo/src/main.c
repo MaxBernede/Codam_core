@@ -6,16 +6,11 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:58:21 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/20 11:10:59 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/20 15:40:10 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// void	fun(void)
-// {
-// 	system("leaks philo");
-// }
 
 void	wait_all_threads(t_rule *rules)
 {
@@ -41,20 +36,18 @@ int	main(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 		return (ft_putstr_fd(ERR_ARG, 2), 1);
-	if (check_input(argv))
+	if (check_input(argv) || init_fill(&rules, argv, &arg))
 		return (ft_putstr_fd(ERR, 2), 1);
-	if (init_fill(&rules, argv, &arg))
-		return (ft_putstr_fd(ERR, 2), 1);
-	if (!arg.phi_nb)
-		return (ft_putstr_fd(ERR, 2), 0);
-	if (!arg.eat_max)
+	if (!arg.phi_nb || !arg.eat_max)
 		return (0);
 	if (init_all(&rules, &phi))
 	{
 		destroy(&rules, phi);
 		return (ft_putstr_fd(ERR, 2), 1);
 	}
+	if (init_threads(&rules, phi))
+		return (1);
 	start(&rules);
-	destroy_all(&rules, phi);
+	destroy(&rules, phi);
 	return (0);
 }

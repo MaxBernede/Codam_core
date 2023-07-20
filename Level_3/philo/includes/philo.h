@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/20 10:57:52 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/20 15:32:29 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_rules
 	pthread_mutex_t	*m_alive;
 	pthread_mutex_t	m_stop_loop;
 	int				kill_loop;
+	int				m_nb;
 }	t_rule;
 
 typedef struct s_philo_thread
@@ -101,6 +102,7 @@ void			fill_to_null(t_rule *rules, t_philo_thread *phi);
 
 //init.c
 int				init_all(t_rule *rules, t_philo_thread **phi);
+int				init_threads(t_rule *rules, t_philo_thread *phi);
 
 //logic.c
 int				start(t_rule *rules);
@@ -123,7 +125,7 @@ void			destroy_all(t_rule *rules, t_philo_thread *phi);
 void			destroy(t_rule *rules, t_philo_thread *phi);
 int				ft_strlen(const char *s);
 int				ft_atoi_overflow(const char *str, int *numb);
-long long		ft_atoll(const char *nb);
+int				ft_atoll_overflow(const char *str, int *numb, long long *nb);
 int				ft_isdigit(int c);
 void			ft_putstr_fd(char *s, int fd);
 

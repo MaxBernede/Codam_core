@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:59:34 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 16:27:28 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/20 15:41:31 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 int	init_fill(t_rule *rules, char **argv, t_args *arg)
 {
 	int	error;
+	int	temp;
 
 	error = 0;
 	error += ft_atoi_overflow(argv[1], &arg->phi_nb);
-	arg->t_to_die = ft_atoll(argv[2]);
-	arg->t_to_eat = ft_atoll(argv[3]);
-	arg->t_to_sleep = ft_atoll(argv[4]);
-	if (arg->t_to_sleep > 2147483647 || arg->t_to_eat > 2147483647 || \
-	arg->t_to_die > 2147483647)
-		++error;
+	error += ft_atoll_overflow(argv[2], &temp, &arg->t_to_die);
+	error += ft_atoll_overflow(argv[3], &temp, &arg->t_to_eat);
+	error += ft_atoll_overflow(argv[4], &temp, &arg->t_to_sleep);
 	if (argv[5])
 		error += ft_atoi_overflow(argv[5], &arg->eat_max);
 	else
@@ -78,4 +76,5 @@ void	fill_to_null(t_rule *rules, t_philo_thread *phi)
 	rules->m_alive = NULL;
 	phi = NULL;
 	rules->kill_loop = 0;
+	rules->m_nb = 0;
 }
