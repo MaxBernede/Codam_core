@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:58:54 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/19 18:32:04 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/20 11:04:56 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	start(t_rule *rules)
 		return (0);
 	}
 	else
-		mini_sleep(rules->arg->t_to_die, NULL);
+		mini_sleep(10, NULL);
 	if (pthread_create(&die, NULL, &loop_dead, (void *)rules))
 		return (1);
 	wait_all_threads(rules);
