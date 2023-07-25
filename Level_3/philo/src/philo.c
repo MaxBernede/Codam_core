@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:57:21 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/20 11:10:12 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/25 12:05:55 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	*one_philo(t_philo_thread *phi)
 	pthread_mutex_lock(phi->philo->l_fork);
 	print_msg(*phi->philo, V_TAKE_FORK, 1);
 	mini_sleep(phi->arg->t_to_die, phi);
-	pthread_mutex_unlock(phi->philo->l_fork);
 	print_msg(*phi->philo, V_DIED, 0);
+	pthread_mutex_unlock(phi->philo->l_fork);
 	return ((void *)phi);
 }
 

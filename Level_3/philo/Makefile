@@ -52,9 +52,9 @@ White		=	"\033[0;37m"		# White
 
 ### EXEC #######################################################
 
-##DEBUGGING += -fsanitize=address -g
+##DEBUGGING += -fsanitize=thread -g
 ifdef DEBUG
-	DEBUGGING += -fsanitize=thread -g
+	DEBUGGING += -fsanitize=address -g
 endif
 
 all: $(NAME)

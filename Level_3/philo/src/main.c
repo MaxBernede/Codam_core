@@ -6,11 +6,16 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:58:21 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/20 15:40:10 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/25 12:47:32 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// void	fun()
+// {
+// 	system("leaks philo");
+// }
 
 void	wait_all_threads(t_rule *rules)
 {
@@ -48,6 +53,8 @@ int	main(int argc, char **argv)
 	if (init_threads(&rules, phi))
 		return (1);
 	start(&rules);
+	if (rules.arg->phi_nb == 1)
+		wait_all_threads(&rules);
 	destroy(&rules, phi);
 	return (0);
 }
