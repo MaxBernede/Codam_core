@@ -6,7 +6,7 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/20 15:32:29 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/07/25 15:01:47 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_philo_thread
 }	t_philo_thread;
 
 //actions.c
-void			print_msg(t_philo phi, int msg, int check);
+void			print_msg(t_philo *phi, int msg, int check);
 void			start_sleep(t_philo_thread *phi);
 void			try_eat(t_philo_thread *phi);
 
@@ -86,10 +86,10 @@ void			change_end(t_philo *philo);
 void			change_all_end(t_rule *rules);
 
 //check.c
-int				check_alive(t_philo philo);
-int				check_t_alive(t_philo philo);
+int				check_alive(t_philo *philo);
+int				check_t_alive(t_philo *philo);
 int				check_all_dead(t_rule *rules);
-int				check_t_alive_deadlock(t_philo philo);
+int				check_t_alive_deadlock(t_philo *philo);
 
 //error_input.c
 int				check_input(char **argv);
@@ -115,7 +115,7 @@ void			*routine(void *arg);
 
 //time.c
 long long		current_time(void);
-long long		philo_time_lived(t_philo phi);
+long long		philo_time_lived(t_philo *phi);
 int				mini_sleep(int time, t_philo_thread *phi);
 
 //UTILS
