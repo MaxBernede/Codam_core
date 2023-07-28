@@ -12,11 +12,12 @@ public:
 		//std::cout << "Contact Constructor called"<< std::endl;
 	}
 	void print_contact();
+	void fill_contact(std::string first, std::string last, std::string phone, std::string s);
 private:
 	std::string first_name;
 	std::string last_name;
 	std::string phone_number;
-	std::string darkest_secret;
+	std::string secret;
 };
 
 class PhoneBook
@@ -27,9 +28,10 @@ public:
 		//std::cout << "Constructor called"<< std::endl;
 	}
 	void ADD();
-	void SEARCH();
 	int getsize();
+	void SEARCH();
 private:
+	Contact ask_data();
 	Contact contacts[8];
 	int size;
 };
