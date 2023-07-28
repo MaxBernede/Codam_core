@@ -43,7 +43,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	(void)argc;
 	(void)argv;
-	atexit(f);
+	//atexit(f);
 	g_glo.error = 0;
 	if (init(&infos, envp))
 		ret_error("Error init\n", 2, 1);

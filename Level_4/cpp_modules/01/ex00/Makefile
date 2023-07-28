@@ -1,8 +1,8 @@
-NAME := phonebook
+NAME := brainz
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
+CXXFLAGS := -Wall -Wextra -std=c++98 -fsanitize=address -g
 RM := rm -rf
-SRC := main.cpp Classes.cpp
+SRC := main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJ := $(SRC:.cpp=.o)
 
 all: $(NAME)

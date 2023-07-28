@@ -3,7 +3,7 @@
 Contact PhoneBook::ask_data()
 {
 	Contact new_c;
-	std::string first, last, phone, secret;
+	std::string first, last, nick, phone, secret;
 
 	while (first.empty()) {
 		std::cout << "Enter First Name: ";
@@ -13,6 +13,11 @@ Contact PhoneBook::ask_data()
 	while (last.empty()) {
 		std::cout << "Enter Last Name: ";
 		std::getline(std::cin, last);
+	}
+
+	while (nick.empty()) {
+		std::cout << "Enter Nickname: ";
+		std::getline(std::cin, nick);
 	}
 
 	while (phone.empty()) {
@@ -25,7 +30,7 @@ Contact PhoneBook::ask_data()
 		std::getline(std::cin, secret);
 	}
 
-	new_c.fill_contact(first, last, phone, secret);
+	new_c.fill_contact(first, last, nick, phone, secret);
 	return (new_c);
 };
 
@@ -45,11 +50,19 @@ void PhoneBook::ADD(){
 	}
 }
 
+void Contact::print_line(){
+	std::cout << std::setw(10) << std::right << (first_name.length() > 10 ? first_name.substr(0, 9) + "." : first_name) << " | ";
+	std::cout << std::setw(10) << std::right << (last_name.length() > 10 ? last_name.substr(0, 9) + "." : last_name) << " | ";
+	std::cout <<  std::setw(10) << std::right << (nickname.length() > 10 ? nickname.substr(0, 9) + "." : nickname) << std::endl;
+}
+
+
 void PhoneBook::SEARCH(){
+	std::cout << "   Index    | First Name |  Last Name |   Nickname " << std::endl;
 	for (int i = 0; i < size; ++i)
 	{
-		std::cout << "Contact " << i << std::endl;
-		contacts[i].print_contact();
+		std::cout << "     " << i << "      | ";
+		contacts[i].print_line();
 	}
 }
 
@@ -65,9 +78,10 @@ void Contact::print_contact(){
 
 }
 
-void Contact::fill_contact(std::string first, std::string last, std::string phone, std::string s){
+void Contact::fill_contact(std::string first, std::string last, std::string nick, std::string phone, std::string s){
 	first_name = first;
 	last_name = last;
+	nickname = nick;
 	phone_number = phone;
 	secret = s;
 };
