@@ -2,7 +2,7 @@ NAME := phonebook
 CXX := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 RM := rm -rf
-SRC := main.cpp Classes.cpp
+SRC := main.cpp Contact.cpp Phonebook.cpp
 OBJ := $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -10,7 +10,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $(NAME)
 
-%.o: %.cpp Classes.hpp
+%.o: %.cpp Contact.hpp Phonebook.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
