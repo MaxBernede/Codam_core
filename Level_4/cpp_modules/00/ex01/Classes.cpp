@@ -63,10 +63,17 @@ int Contact::exist(){
 		return (0);
 }
 
+void Contact::print_contact(){
+	std::cout << "First Name: " << first_name << std::endl;
+	std::cout << "Last Name: " << last_name << std::endl;
+	std::cout << "Phone Number: " << phone_number << std::endl;
+	std::cout << "Darkest Secret: " << secret << std::endl;
 
+}
 void PhoneBook::SEARCH(){
-	int index;
+	std::string index;
 	int i;
+	int nb_index;
 	std::cout << "   Index    | First Name |  Last Name |   Nickname " << std::endl;
 	for (int i = 0; i < size; ++i)
 	{
@@ -75,6 +82,12 @@ void PhoneBook::SEARCH(){
 	}
 	std::cout << "Enter the index : " << std::endl;
 	std::cin >> index;
+	if (index.size() > 1)
+	{
+		std::cout << "Invalid index" << std::endl;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return ;
+	}
 	for (i = 0; i < 8; ++i)
 	{
 		if (!contacts[i].exist())
@@ -83,24 +96,16 @@ void PhoneBook::SEARCH(){
 			break;
 		}
 	}
-	if (index >= 0 && index <= 7 && index <= i)
-		contacts[index].print_contact();
+	nb_index = index[0] - '0';
+	if (index[0] >= '0' && index[0] <= '7' && nb_index <= i)
+		contacts[nb_index].print_contact();
 	else
 		std::cout << "Invalid index" << std::endl;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
 }
 
 int PhoneBook::getsize(){
 	return (this->size);
-}
-
-void Contact::print_contact(){
-	std::cout << "First Name: " << first_name << std::endl;
-	std::cout << "Last Name: " << last_name << std::endl;
-	std::cout << "Phone Number: " << phone_number << std::endl;
-	std::cout << "Darkest Secret: " << secret << std::endl;
-
 }
 
 void Contact::fill_contact(std::string first, std::string last, std::string nick, std::string phone, std::string s){
