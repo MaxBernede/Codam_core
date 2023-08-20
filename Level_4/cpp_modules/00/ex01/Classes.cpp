@@ -56,26 +56,34 @@ void Contact::print_line(){
 	std::cout <<  std::setw(10) << std::right << (nickname.length() > 10 ? nickname.substr(0, 9) + "." : nickname) << std::endl;
 }
 
-
-void PhoneBook::SEARCH(){
-	std::cout << "   Index    | First Name |  Last Name |   Nickname " << std::endl;
-	for (int i = 0; i < size; ++i)
-	{
-		std::cout << "     " << i << "      | ";
-		contacts[i].print_line();
-	}
-}
-
-int PhoneBook::getsize(){
-	return (this->size);
-}
-
 void Contact::print_contact(){
 	std::cout << "First Name: " << first_name << std::endl;
 	std::cout << "Last Name: " << last_name << std::endl;
 	std::cout << "Phone Number: " << phone_number << std::endl;
 	std::cout << "Darkest Secret: " << secret << std::endl;
 
+}
+
+void PhoneBook::SEARCH(){
+	int choice;
+	std::string buf;
+
+	std::cout << "   Index    | First Name |  Last Name |   Nickname " << std::endl;
+	for (int i = 0; i < size; ++i)
+	{
+		std::cout << "     " << i << "      | ";
+		contacts[i].print_line();
+	}
+	std::cout << "Enter the index:\n";
+	std::cin >> choice;
+	if (choice < 8 && choice >= 0)
+		contacts[choice].print_contact();
+	else
+		std::cout << "Index is incorrect\n";
+}
+
+int PhoneBook::getsize(){
+	return (this->size);
 }
 
 void Contact::fill_contact(std::string first, std::string last, std::string nick, std::string phone, std::string s){
