@@ -7,7 +7,6 @@ RM			:=	rm -rf
 SRC			:=	megaphone.cpp
 
 OBJ			:=	$(SRC:.cpp=.o)
-SRC			:=	$(SRC)
 
 all: $(NAME)
 

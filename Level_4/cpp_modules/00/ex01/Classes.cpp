@@ -56,14 +56,39 @@ void Contact::print_line(){
 	std::cout <<  std::setw(10) << std::right << (nickname.length() > 10 ? nickname.substr(0, 9) + "." : nickname) << std::endl;
 }
 
+int Contact::exist(){
+	if (!first_name.empty())
+		return (1);
+	else
+		return (0);
+}
+
 
 void PhoneBook::SEARCH(){
+	int index;
+	int i;
 	std::cout << "   Index    | First Name |  Last Name |   Nickname " << std::endl;
 	for (int i = 0; i < size; ++i)
 	{
 		std::cout << "     " << i << "      | ";
 		contacts[i].print_line();
 	}
+	std::cout << "Enter the index : " << std::endl;
+	std::cin >> index;
+	for (i = 0; i < 8; ++i)
+	{
+		if (!contacts[i].exist())
+		{
+			--i;
+			break;
+		}
+	}
+	if (index >= 0 && index <= 7 && index <= i)
+		contacts[index].print_contact();
+	else
+		std::cout << "Invalid index" << std::endl;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 }
 
 int PhoneBook::getsize(){

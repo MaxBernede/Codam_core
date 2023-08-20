@@ -12,9 +12,10 @@ public:
 	Contact(){
 		//std::cout << "Contact Constructor called"<< std::endl;
 	}
-	void print_contact();
-	void print_line();
-	void fill_contact(std::string first, std::string last, std::string nick, std::string phone, std::string s);
+	void	print_contact();
+	void	print_line();
+	int		exist();
+	void	fill_contact(std::string first, std::string last, std::string nick, std::string phone, std::string s);
 private:
 	std::string first_name;
 	std::string last_name;
