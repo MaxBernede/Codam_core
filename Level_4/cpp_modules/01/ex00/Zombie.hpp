@@ -1,5 +1,5 @@
-#ifndef CLASSES_HPP
-#define CLASSES_HPP
+#ifndef ZOMBIE_HPP
+#define ZOMBIE_HPP
 
 # include <iostream>
 # include <iomanip>

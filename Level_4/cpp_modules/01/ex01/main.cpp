@@ -8,8 +8,8 @@ int main() {
 		horde[i].announce();
 	}
 
-	for (int i = 0; i < N; i++){
-		delete &horde[i];
-	}
+	std::cout << "Free the Zombies!" << std::endl;
+	delete[] horde;
+	// system("leaks zombiehorde");
 	return 0;
 }

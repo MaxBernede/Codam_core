@@ -1,8 +1,8 @@
-NAME := horde
+NAME := hi
 CXX := c++
 CXXFLAGS := -Wall -Wextra -std=c++98 -fsanitize=address -g
 RM := rm -rf
-SRC := main.cpp Zombie.cpp zombieHorde.cpp
+SRC := main.cpp
 OBJ := $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -10,7 +10,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $(NAME)
 
-%.o: %.cpp Zombie.hpp
+%.o: %.cpp Classes.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
