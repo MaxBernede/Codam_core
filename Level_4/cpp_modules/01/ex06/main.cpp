@@ -1,14 +1,14 @@
 #include "Harl.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
 	Harl hello;
 
-	// hello.complain("WARNING");
-
-	// hello.complain("ERROR");
-
+	if (argc != 2){
+		std::cout << "Arg Error: ./harlFilter [msg_type]" << std::endl;
+		return 0;
+	}
+	hello.complain(argv[1]);
 	// hello.complain("INFO");
-
-	hello.complain("a");
+	return 0;
 }
