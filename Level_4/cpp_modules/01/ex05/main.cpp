@@ -4,12 +4,15 @@ int main(void)
 {
 	Harl hello;
 
-	std::cout << "Harl just lost a brain cell" << std::endl;
+	std::cout << "WARNING" << std::endl;
+	hello.complain("WARNING");
+
+	std::cout << "ERROR" << std::endl;
 	hello.complain("ERROR");
 
-	std::cout << "HARL INFO" << std::endl;
+	std::cout << "INFO" << std::endl;
 	hello.complain("INFO");
 
-	std::cout << "HARL ON A WHOLE OTHER LEVEL" << std::endl;
+	std::cout << "a" << std::endl;
 	hello.complain("a");
 }
