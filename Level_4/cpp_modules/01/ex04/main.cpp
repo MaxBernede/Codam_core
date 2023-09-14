@@ -3,12 +3,14 @@
 #include <sstream>
 #include <fstream>
 
+
 int error_msg(std::string str)
 {
 	std::cout << str << std::endl;
 	return (0);
 }
 
+//this function is not correct and just cut the first line...
 std::string	loop(std::ifstream &is, std::string old, std::string new_w)
 {
 	std::string temp, str;
