@@ -13,6 +13,7 @@ public:
 	Zombie(std::string n);
 	~Zombie();
 	void announce( void );
+	void set_name(std::string n);
 private:
 	std::string name;
 };

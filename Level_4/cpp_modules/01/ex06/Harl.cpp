@@ -1,8 +1,6 @@
 #include "Harl.hpp"
 
-void Harl::complain(std::string level){
-	int i;
-	void  (Harl::*table[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+int	input_search(int i, std::string level){
 	std::string search[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for (i = 0; i < 4; i++)
@@ -10,6 +8,14 @@ void Harl::complain(std::string level){
         if (search[i] == level)
             break;
 	}
+	return (i);
+}
+
+void Harl::complain(std::string level){
+	int i = 0;
+	void  (Harl::*table[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
+	i = input_search(i, level);
 	switch (i)
 	{
 		case 0: (this->*table[i])();

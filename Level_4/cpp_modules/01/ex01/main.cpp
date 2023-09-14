@@ -10,6 +10,5 @@ int main() {
 
 	std::cout << "Free the Zombies!" << std::endl;
 	delete[] horde;
-	// system("leaks zombiehorde");
 	return 0;
 }

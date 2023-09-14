@@ -11,7 +11,7 @@ Zombie::Zombie(std::string n){
 }
 
 Zombie::~Zombie(){
-	std::cout << "Destructor Called" << std::endl;
+	std::cout << "Destructor Called on : " << name << std::endl;
 }
 
 void Zombie::announce(void)

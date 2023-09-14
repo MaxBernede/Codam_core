@@ -9,10 +9,10 @@ Weapon::Weapon(){
 }
 
 Weapon::~Weapon(){
-	std::cout << "Destructor of Weapon\n";
+	std::cout << "Weapon destroyed : " << type << std::endl;
 }
 
-std::string &Weapon::getType(void)
+const std::string &Weapon::getType(void)
 {
     return type;
 }

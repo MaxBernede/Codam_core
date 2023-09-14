@@ -23,6 +23,7 @@ std::string	loop(std::ifstream &is, std::string old, std::string new_w)
 		{
 			if (str.empty())
 				return temp;
+			str.append(temp, start, temp.length() - str.length());
 			return str;
 		}
 		str.append(temp, start, pos - start);
@@ -38,7 +39,6 @@ int main(int argc, char **argv)
 	std::ifstream is;
 	std::string new_file, file, old, new_w, str;
 	std::ofstream os;
-	//std::ostringstream ss;
 
 	if (argc != 4)
 		return (error_msg("Error: Correct usage : <filename> <str to replace> <str to add>"));
