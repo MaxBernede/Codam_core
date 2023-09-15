@@ -2,7 +2,6 @@
 #include "ScavTrap.hpp"
 
 int main( void ) {
-    ClapTrap Zeke("Zeke");
     ScavTrap Robot("Robot");
 
     std::cout << std::endl;

@@ -8,9 +8,9 @@ int main( void ) {
     // FragTrap Frag("Frank");
     DiamondTrap Diam("Diams");
     std::cout << std::endl;
-    Diam.whoAmI();
-    std::cout << std::endl;
     Diam.attack("Kole");
+    std::cout << std::endl;
+    Diam.whoAmI();
     std::cout << std::endl;
     return 0;
 }

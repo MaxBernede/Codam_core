@@ -1,6 +1,7 @@
 NAME := exe
 CXX := c++
-CXXFLAGS := -Wall -Wextra -std=c++98 -fsanitize=address -g
+#-Wno-shadow
+CXXFLAGS := -Wall -Wextra -std=c++98 -Wshadow -fsanitize=address -g
 RM := rm -rf
 SRC :=	main.cpp		\
 		ClapTrap.cpp	\

@@ -1,12 +1,12 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string n){
+DiamondTrap::DiamondTrap(std::string n) : FragTrap(), ScavTrap(){
     std::cout << "DiamondTrap Constructor called" << std::endl;
     this->name = n;
     this->health = FragTrap::health;
     this->energy = ScavTrap::energy;
     this->attack_dmg = FragTrap::attack_dmg;
-    std::cout << name << " " << health << "health " << energy << "energy " << attack_dmg << "attack"<< std::endl;
+    std::cout << this->name << " " << health << "health " << energy << "energy " << attack_dmg << "attack"<< std::endl;
 }
 
 DiamondTrap::~DiamondTrap(){
@@ -18,5 +18,5 @@ void DiamondTrap::attack(const std::string& target){
 }
 
 void DiamondTrap::whoAmI(void){
-    std::cout << "Who Am i :\nDiam_name : " << name << "\nClap_name : " << ClapTrap::name << std::endl;
+    std::cout << "Who Am i :\nDiam_name : " << this->name << "\nClap_name : " << ClapTrap::name << std::endl;
 }
