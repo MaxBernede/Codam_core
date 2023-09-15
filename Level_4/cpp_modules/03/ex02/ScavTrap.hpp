@@ -3,12 +3,19 @@
 
 # include "ClapTrap.hpp"
 
-class ScavTrap: virtual public ClapTrap
+class ScavTrap: public virtual ClapTrap
 {
 public:
 	ScavTrap();
-	ScavTrap(std::string n);
+	ScavTrap(std::string);
 	~ScavTrap();
+
+    //Copy constructor
+	ScavTrap(const ScavTrap &obj);
+
+	//Operator overload
+	ScavTrap &operator=(const ScavTrap &obj);
+
     void guardGate(void);
     void attack(const std::string& target);
 private:

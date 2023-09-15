@@ -11,12 +11,9 @@ int main( void ) {
 
     ClapTrap Copied = Zeke;
     ClapTrap Copiod(Zeke);
-    Zeke.name = "MALOUBAR";
     Zeke.takeDamage(1);
     Copied.takeDamage(2);
     Copiod.takeDamage(3);
-
-    Copiod.name = "LOUSTIC";
     // Copied.print_life();
     // Zeke.print_life();
     return 0;

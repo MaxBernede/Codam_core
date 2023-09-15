@@ -2,25 +2,36 @@ NAME := exe
 CXX := c++
 CXXFLAGS := -Wall -Wextra -std=c++98 -fsanitize=address -g
 RM := rm -rf
+
 SRC :=	main.cpp	\
 		ClapTrap.cpp\
 
-OBJ := $(SRC:.cpp=.o)
+INC:=	ClapTrap.hpp\
+
+OBJ_DIR :=	./obj
+OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $(NAME)
 
-%.o: %.cpp ClapTrap.hpp
+$(OBJ_DIR)/%.o: %.cpp $(INC) | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
 	$(RM) $(OBJ)
 
 fclean: clean
+	$(RM) $(OBJ_DIR)
 	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: clean all fclean re
+run: $(NAME)
+	./$(NAME)
+
+.PHONY: clean all fclean re run

@@ -21,12 +21,12 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 	void	print_life();
-	std::string name;
 
 protected:
 	virtual std::ostream &me();
 
 private:
+	std::string name;
 	int health;
 	int energy;
 	int attack_dmg;
