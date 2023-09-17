@@ -1,19 +1,19 @@
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef DOG_HPP
+#define DOG_HPP
 
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Cat : public Animal{
+class Dog : public Animal{
 public:
-    Cat();
-    Cat(std::string);
-    ~Cat();
+    Dog();
+    Dog(std::string);
+    ~Dog();
 
     // Copy constructor
-    Cat(const Cat &obj);
+    Dog(const Dog &obj);
     // Operator overload
-    Cat &operator=(const Cat &obj);
+    Dog &operator=(const Dog &obj);
 
     void makeSound() const;
     Brain *get_brain() const;

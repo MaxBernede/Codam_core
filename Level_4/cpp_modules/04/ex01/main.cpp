@@ -1,8 +1,6 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
 int main()
 {
@@ -24,19 +22,26 @@ int main()
     // delete i;
     // std::cout << "END TEST FROM EXERCISE ***************" << std::endl;
 
-    Dog basic;
-    //std::cout << basic.getType() << " " << std::endl;
-    std::cout << std::endl;
+    //Test below to prove the functionnality of the deep copy and independent brains
+
+    // Dog basic;
+    // //std::cout << basic.getType() << " " << std::endl;
+    // std::cout << std::endl;
     // Brain *dog_brain = basic.get_brain();
     // dog_brain->set_idea("Tango");
     // dog_brain->set_idea("Ballar");
     // dog_brain->set_idea("Ice cream");
     // dog_brain->get_ideas();
-    {
-    //dog constructor called but type is Animal due to object slicing
-    //to not have this problem, the use of a pointer or reference is mandatory
-    Dog tmp = basic;
-    std::cout << std::endl;
-    }
+    // {
+    // //dog constructor called but type is Animal due to object slicing
+    // //to not have this problem, the use of a pointer or reference is mandatory
+    // Dog tmp = basic;
+    // Brain *tmp_brain = tmp.get_brain();
+    // tmp_brain->set_idea("TMP IDEA");
+    // tmp_brain->get_ideas();
+    // std::cout << std::endl;
+    // dog_brain->get_ideas();
+    // std::cout << std::endl;
+    // }
     return 0;
 }
