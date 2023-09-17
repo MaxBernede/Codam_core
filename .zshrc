@@ -7,6 +7,7 @@ touchpp() {
 
   # Get the NAME argument
   local NAME="$1"
+  local up_name="$(echo "${NAME}" | tr '[:lower:]' '[:upper:]')"
 
   # Create the .cpp and .hpp files
   touch "${NAME}.cpp"
@@ -44,8 +45,8 @@ EOF
 
   # Add the code to the .hpp file
   cat <<EOF > "${NAME}.hpp"
-#ifndef ${NAME}_HPP
-#define ${NAME}_HPP
+#ifndef ${up_name}_HPP
+#define ${up_name}_HPP
 
 #include <iostream>
 #include <string>
