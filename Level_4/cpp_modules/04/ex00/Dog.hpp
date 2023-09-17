@@ -13,6 +13,8 @@ public:
     Dog(const Dog &obj);
     // Operator overload
     Dog &operator=(const Dog &obj);
+
+    void makeSound() const;
 };
 
 #endif

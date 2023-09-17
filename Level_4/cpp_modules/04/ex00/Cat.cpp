@@ -17,10 +17,14 @@ Cat::~Cat() {
 
 // Canonical form
 Cat &Cat::operator=(const Cat &obj) {
-    //copy depending on vars;
+    this->type = obj.type;
     return *this;
 }
 
 Cat::Cat(const Cat &obj) {
     *this = obj;
+}
+
+void Cat::makeSound() const{
+    std::cout << type << " goes : Meow!" << std::endl;
 }

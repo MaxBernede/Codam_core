@@ -27,15 +27,10 @@ Animal::Animal(const Animal &obj) {
     *this = obj;
 }
 
-const std::string& Animal::getType(){
+std::string Animal::getType() const{
     return type;
 }
 
-const void Animal::makeSound(){
-    if (type == "Cat")
-        std::cout << "Meow!" << std::endl;
-    else if (type == "Dog")
-        std::cout << "Wooof!" << std::endl;
-    else
-        std::cout << "The things does a weird noise" << std::endl;
+void Animal::makeSound() const{
+    std::cout << type << " goes : Animal noise" << std::endl;
 }

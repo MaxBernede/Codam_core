@@ -13,6 +13,8 @@ public:
     Cat(const Cat &obj);
     // Operator overload
     Cat &operator=(const Cat &obj);
+
+    void makeSound() const;
 };
 
 #endif

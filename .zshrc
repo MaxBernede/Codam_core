@@ -79,12 +79,32 @@ function calias() {
         source ~/.zshrc
     fi
 }
-alias gp="git pull"
-alias py='python3'
-alias code='open -a "Visual Studio Code"'
-alias rmf='rm -rf'
+
+mkdex() {
+  if [ "$#" -ne 1 ] || ! [[ "$1" =~ ^[0-9]+$ ]]; then
+    echo "Usage: mkdex N (where N is a positive integer)"
+    return 1
+  fi
+
+  N="$1"
+  for i in $(seq -w 0 "$N"); do
+    mkdir -p "ex0$i"
+  done
+}
+
 export PATH="/opt/homebrew/bin:$PATH"
+
+alias py='python3'
+
+alias code='open -a "Visual Studio Code"'
+
 alias ga='git add --all'
 alias gp='git push'
+alias gpu="git pull"
 alias gm='git commit -m'
 alias gs='git status'
+
+alias rmf='rm -rf'
+alias rmt="rm -rf test"
+alias zs="cat /home/mbernede/.zshrc"
+alias cdcpp="cd /home/mbernede/Desktop/codam/Level_4/cpp_modules"

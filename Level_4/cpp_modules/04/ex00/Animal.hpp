@@ -8,15 +8,16 @@ class Animal {
 public:
     Animal();
     Animal(std::string);
-    ~Animal();
+    //virtual destructor because in the main it's kept as Animal while dog is derived
+    virtual ~Animal();
 
     // Copy constructor
     Animal(const Animal &obj);
     // Operator overload
     Animal &operator=(const Animal &obj);
 
-    const void makeSound();
-    const std::string& getType();
+    virtual void makeSound() const;
+    std::string getType() const;
 
 protected:
     std::string type;
