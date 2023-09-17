@@ -64,3 +64,6 @@ Rules of Virtual Function:
     - We cannot have a virtual constructor, but we can have a virtual destructor
 
 */
+
+When I need to create the abstract class, add = 0 to the virtual function
+this will create a pure A class that wont be able to be initialized

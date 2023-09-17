@@ -15,7 +15,7 @@ public:
     // Operator overload
     WrongAnimal &operator=(const WrongAnimal &obj);
 
-    virtual void makeSound() const;
+    void makeSound() const;
     std::string getType() const;
 
 protected:

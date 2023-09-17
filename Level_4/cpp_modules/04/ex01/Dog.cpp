@@ -16,12 +16,19 @@ Dog::~Dog() {
 
 // Canonical form
 Dog &Dog::operator=(const Dog &obj) {
+    std::cout << type << " Operator = Called" << std::endl;
     this->type = obj.type;
+    delete this->brain;
+    brain = new Brain(*(obj.brain));
     return *this;
 }
 
 Dog::Dog(const Dog &obj) {
     *this = obj;
+}
+
+Brain *Dog::get_brain() const{
+    return brain;
 }
 
 void Dog::makeSound() const{

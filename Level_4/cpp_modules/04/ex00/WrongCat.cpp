@@ -26,5 +26,5 @@ WrongCat::WrongCat(const WrongCat &obj) {
 }
 
 void WrongCat::makeSound() const{
-    std::cout << type << " goes : I'm confused coz I'm wrong!" << std::endl;
+    std::cout << type << " goes : Wrongcat noise" << std::endl;
 }
