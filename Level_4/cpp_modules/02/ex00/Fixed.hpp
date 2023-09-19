@@ -12,6 +12,11 @@ public:
 	~Fixed();
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
+
+	// Copy constructor
+    Fixed(const Fixed &obj);
+    // Operator overload
+    virtual Fixed &operator=(const Fixed &obj);
 private:
 	int fixpoint_nb;
 	static const int fractional = 8;

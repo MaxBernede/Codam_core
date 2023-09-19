@@ -23,3 +23,15 @@ int Fixed::getRawBits(void) const{
 void Fixed::setRawBits(int const raw){
     fixpoint_nb = raw;
 }
+
+// Canonical form
+Fixed &Fixed::operator=(const Fixed &obj) {
+    if (this != &obj) {
+        //copy
+    }
+    return *this;
+}
+
+Fixed::Fixed(const Fixed &obj) {
+    *this = obj;
+}
