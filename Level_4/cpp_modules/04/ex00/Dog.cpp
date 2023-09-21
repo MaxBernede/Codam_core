@@ -17,10 +17,14 @@ Dog::~Dog() {
 
 // Canonical form
 Dog &Dog::operator=(const Dog &obj) {
-    //copy depending on vars;
+    this->type = obj.type;
     return *this;
 }
 
 Dog::Dog(const Dog &obj) {
     *this = obj;
+}
+
+void Dog::makeSound() const{
+    std::cout << type << " goes : Woof Woof!" << std::endl;
 }

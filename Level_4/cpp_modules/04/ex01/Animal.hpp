@@ -14,7 +14,7 @@ public:
     // Copy constructor
     Animal(const Animal &obj);
     // Operator overload
-    Animal &operator=(const Animal &obj);
+    virtual Animal &operator=(const Animal &obj);
 
     virtual void makeSound() const;
     std::string getType() const;

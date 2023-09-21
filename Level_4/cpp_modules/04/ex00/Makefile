@@ -7,10 +7,14 @@ SRC :=	main.cpp	\
 		Dog.cpp		\
 		Cat.cpp		\
 		Animal.cpp	\
+		WrongAnimal.cpp	\
+		WrongCat.cpp	\
 
 INC:=	Animal.hpp\
 		Dog.hpp\
 		Cat.hpp\
+		WrongAnimal.hpp	\
+		WrongCat.hpp	\
 
 OBJ_DIR :=	./obj
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
