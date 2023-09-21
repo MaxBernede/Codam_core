@@ -6,10 +6,6 @@ Fixed::Fixed() {
     _number = 0;
 }
 
-Fixed::Fixed(int n) : _number(n) {
-    std::cout << "Fixed Constructor called" << std::endl;
-}
-
 Fixed::~Fixed() {
     std::cout << "Fixed Destructor called" << std::endl;
 }

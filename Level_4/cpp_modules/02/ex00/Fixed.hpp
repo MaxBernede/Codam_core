@@ -7,7 +7,6 @@
 class Fixed {
 public:
 	Fixed();
-	Fixed(int);
 	~Fixed();
 
 	// Copy constructor

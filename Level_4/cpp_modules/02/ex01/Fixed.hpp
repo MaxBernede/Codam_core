@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 
 class Fixed {
 public:
 	Fixed();
-	Fixed(int);
+	Fixed(const int);
+	Fixed(const float);
 	~Fixed();
 
 	// Copy constructor
