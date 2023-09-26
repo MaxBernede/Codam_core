@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   cmd_get_env.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:45:07 by mbernede      #+#    #+#                 */
+/*   Updated: 2023/09/26 14:01:18 by mbernede      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 //find the env with the same name and update the datas
@@ -30,7 +42,7 @@ int	cmd_check_env_exist(t_infos *infos, char *env)
 	current = infos->head;
 	while (current != NULL)
 	{
-		if (!ft_strncmp(env, current->name, ft_strlen(env)))
+		if (!ft_strncmp(env, current->name, (ft_strlen(env) + 1)))
 			return (1);
 		current = current->next;
 	}
@@ -83,7 +95,7 @@ void	cmd_get_env_pwd(t_infos *infos, char *env)
 		{
 			infos->pwd = ft_strdup(current->data);
 			if (!infos->pwd)
-				void_ret_error("Malloc fail", 2);
+				void_ret_error("Malloc fail", 2, infos);
 			return ;
 		}
 		current = current->next;

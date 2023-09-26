@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   get_envp.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:13:57 by mbernede      #+#    #+#                 */
+/*   Updated: 2023/09/07 15:27:22 by mbernede      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-char *env_str(t_node *current)
+char	*env_str(t_node *current)
 {
-	char *str;
+	char	*str;
 
 	str = ft_strdup(current->name);
 	if (!str)
@@ -15,7 +27,6 @@ char *env_str(t_node *current)
 	return (str);
 }
 
-//warning : ret_error returns an int
 char	**get_envp(t_infos *infos)
 {
 	t_node	*current;

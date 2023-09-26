@@ -3,16 +3,17 @@ NAME		:=	minishell
 
 DEBUGGING	?=
 
-LIBS		:=	./libft/libft.a -lreadline -I /Users/$(USER)/.homebrew/opt/readline/include -L/Users/$(USER)/.homebrew/opt/readline/lib
 
-HEADER		:=	-I libft -I includes -I /Users/$(USER)/.homebrew/opt/readline/include
+LIBS		:=	./libft/libft.a -lreadline -I /Users/$(USER)/.homebrew/opt/readline/include -L/Users/$(USER)/.homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include -L/opt/homebrew/opt/readline/lib
+
+HEADER		:=	-I libft -I includes -I /Users/$(USER)/.homebrew/opt/readline/include -I /opt/homebrew/opt/readline/include
 
 HEADERS		:=	libft/libft.h includes/minishell.h includes/struct.h
 OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
-CFLAGS	:=	-Wall -Wextra
+CFLAGS	:=	-Wall -Wextra -Werror
 RM		:=	rm -rf
 
 SRC 	:=	main.c			\
@@ -29,6 +30,7 @@ SRC 	:=	main.c			\
 			builtins/cmd_cd.c 		\
 			builtins/cmd_unset.c	\
 			builtins/cmd_export.c	\
+			builtins/cmd_export_d.c	\
 			builtins/cmd_get_env.c 	\
 			builtins/cmd_exit.c 	\
 			builtins/cmd_echo.c		\
@@ -46,21 +48,22 @@ SRC 	:=	main.c			\
 			redirects/open.c			\
 			redirects/here_doc_utils.c	\
 			execution/execution.c 		\
+			execution/execution_cmd.c	\
 			execution/get_envp.c		\
-			execution/in_out_redir.c	\
+			execution/fds.c				\
 			execution/fill_blt.c		\
+			execution/built_exec.c		\
 			utils/ret_error.c			\
 			utils/compare.c				\
 			utils/ft_isnumber.c			\
 			utils/ft_2d_print.c			\
 			utils/ft_our_lst_size.c		\
 			utils/free_struc.c			\
+			utils/ft_split_first.c		\
+			utils/is_invalid_id.c		\
 
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRC_DIR)/,$(SRC))
-## BON_SRC :=
-
-## BON_OBJ :=  $(BON_SRC:_bonus.c=_bonus.o)
 
 ## Regular Colors ##############################################
 Color_Off	=	"\033[0m"			# Text Reset
@@ -76,7 +79,7 @@ White		=	"\033[0;37m"		# White
 ### EXEC #######################################################
 
 ifdef DEBUG
-	DEBUGGING += -fsanitize=address -g
+	DEBUGGING += -g
 endif
 
 all: $(NAME)
@@ -102,17 +105,19 @@ clean:
 	@echo $(Cyan) Sweeping.. 💥 $(Color_Off)
 	@echo -----------------------
 	@$(MAKE) -C libft clean
+	@rm -rf $(OBJ_DIR)
 	@$(RM) $(OBJ) $(BON_OBJ)
 
 fclean:
 	@echo $(Red) Thorough sweeping.. 💥 $(Color_Off)
 	@echo -----------------------
 	@$(MAKE) -C libft fclean
+	@rm -rf $(OBJ_DIR)
 	@$(RM) $(NAME) $(OBJ) $(BON_OBJ)
 
 re: fclean all
 
 mem:
-	memdetect $(SRC) $(LIBS) $(HEADER)
+	memdetect $(SRC) $(LIBS) $(HEADER) -fail loop 290 -fl -fsanitize=address
 
 .PHONY: clean all fclean re libmlx

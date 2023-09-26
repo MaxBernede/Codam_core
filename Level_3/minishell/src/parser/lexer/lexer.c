@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/21 11:55:54 by jmeruma           #+#    #+#             */
+/*   Updated: 2023/09/21 11:55:55 by jmeruma          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static int	len_with_quote(char const *line, int index, int c)
@@ -32,7 +44,7 @@ int	quotes(char *line, int index, int len, int *check)
 }
 
 int	line_creation(t_lexer **lexer, char *line, int *index, int *len)
-{		
+{
 	int	check;
 
 	while (!ft_isspace(line[*index + *len]) && line[*index + *len])

@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:24:49 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/10 11:16:52 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/09/21 11:41:19 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned int	ft_atohex(const char *hex)
 	numb = 0;
 	while (hex[i] == ' ' || hex[i] == '\f' || hex[i] == '\n'
 		|| hex[i] == '\r' || hex[i] == '\t' || hex[i] == '\v')
-			i++;
+		i++;
 	while (ft_isalnum(hex[i]) == 1 || hex[i] == '\n')
 	{
 		if (hex[i] >= '0' && hex[i] <= '9')

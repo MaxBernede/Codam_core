@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 15:05:51 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/05/04 12:48:38 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/08/04 15:38:11 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strjoin_free(char *s1, char const *s2)
 {
@@ -31,6 +32,7 @@ char	*ft_strjoin_free(char *s1, char const *s2)
 		return (free(s1), NULL);
 	ft_strlcpy(ptr, (char *)s1, (ft_strlen(s1) + 1));
 	ft_strlcat(ptr, (char *)s2, (total + 1));
+	ptr[total] = '\0';
 	free(s1);
 	return (ptr);
 }

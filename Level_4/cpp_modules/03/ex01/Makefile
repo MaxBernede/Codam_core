@@ -1,6 +1,6 @@
 NAME := exe
 CXX := c++
-CXXFLAGS := -Wall -Wextra -std=c++98 -fsanitize=address -g
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 RM := rm -rf
 
 SRC :=	main.cpp	\

@@ -1,39 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/09/12 13:53:10 by mbernede      #+#    #+#                 */
+/*   Updated: 2023/09/26 16:51:53 by mbernede      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-#include <sys/time.h>
-#include <sys/wait.h>
-#define CHILD 0
+// #include <sys/time.h>
+// #include <sys/wait.h>
 
-void	execute_img(t_infos *infos)
+
+//heredoc signal
+//pipe
+//cat cat ls
+
+
+int	g_signal;
+
+int	exit_properly(t_infos *infos, char *line)
 {
-	char	*path;
-
-	infos->pid = fork();
-	if (infos->pid == -1)
-	{
-		printf("fork Error\n");
-		return ;
-	}
-	if (infos->pid == CHILD)
-	{
-		path = ft_strdup("./imgcat");
-		if (path)
-		{
-			char	*args[] = {"imgcat", "download.png", NULL};
-			execve(path, args, NULL);
-			printf("execve error\n");
-		}
-		else
-			printf("ft_strdup error\n");
-		return ;
-	}
-	waitpid(infos->pid, NULL, 0);
+	if (!line)
+		ft_printf("exit\n");
+	free_infos(infos);
+	return (0);
 }
 
-void	f() {
-	system("leaks -q minishell");
+int	no_start(int argc, t_infos *infos, char **envp)
+{
+	if (argc != 1)
+		return (ret_error("Too many Arguments!\n", 2, 1));
+	if (init(infos, envp))
+		return (EXIT_FAILURE);
+	return (0);
 }
-
-t_glo g_glo;
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -41,27 +45,24 @@ int	main(int argc, char *argv[], char *envp[])
 	t_infos		infos;
 	t_command	*command;
 
-	(void)argc;
 	(void)argv;
-	//atexit(f);
-	g_glo.error = 0;
-	if (init(&infos, envp))
-		ret_error("Error init\n", 2, 1);
-	execute_img(&infos);
-	mainsignal();
-	line = readline("\x1b[1m\x1b[38;2;0;255;255mCeleste-shell$ \x1b[0m");
+	if (no_start(argc, &infos, envp))
+		return (EXIT_FAILURE);
+	line = readline("Celeste-shell$ ");
 	while (line)
 	{
+		if (g_signal)
+		{
+			infos.error = g_signal;
+			g_signal = 0;
+		}
 		add_history(line);
 		command = parser(line, &infos);
 		if (command && command->cmd_argv)
 			start_exec(command, &infos);
 		free_cmd_struct(command);
 		free(line);
-		line = readline("\x1b[1m\x1b[38;2;0;255;255mCeleste-shell$ \x1b[0m");
+		line = readline("Celeste-shell$ ");
 	}
-	if (!line)
-		ft_printf("exit\n");
-	free_infos(&infos);
-	return (0);
+	return (exit_properly(&infos, line));
 }

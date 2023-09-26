@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cmd_env.c                                          :+:    :+:            */
+/*   cmd_export_d.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/08/31 13:45:13 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/09/22 12:41:33 by mbernede      ########   odam.nl         */
+/*   Created: 2023/08/31 13:52:50 by mbernede      #+#    #+#                 */
+/*   Updated: 2023/08/31 13:52:55 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// print the linked list where value != 0
-void	cmd_env(t_infos *infos)
+void	show_declare(t_infos *infos, int fd)
 {
 	t_node	*current;
 
 	current = infos->head;
 	while (current != NULL)
 	{
-		if (current->type)
+		ft_putstr_fd("declare -x ", fd);
+		ft_putstr_fd(current->name, fd);
+		if (current->type != EMPTY)
 		{
-			ft_putstr_fd(current->name, 1);
-			write(1, "=", 1);
+			ft_putstr_fd("=", fd);
+			ft_putstr_fd("\"", fd);
 			if (current->type == FULL)
-				ft_putstr_fd(current->data, 1);
-			write(1, "\n", 1);
+				ft_putstr_fd(current->data, fd);
+			ft_putstr_fd("\"", fd);
 		}
+		write(fd, "\n", 1);
 		current = current->next;
 	}
-	infos->error = 0;
 }

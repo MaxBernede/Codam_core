@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   path_creation.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/09/21 16:28:04 by mbernede      #+#    #+#                 */
+/*   Updated: 2023/09/21 16:28:05 by mbernede      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #define FOUND 0
 
-static char *path_command_join(char **bin_dir, char *command, int index)
+static char	*path_command_join(char **bin_dir, char *command, int index)
 {
 	char	*path_command;
 
@@ -52,7 +64,7 @@ char	*path_creation(t_infos *infos, char *command)
 
 	if (*command == '\0')
 	{
-		print_error("$", "command not found");
+		print_error("$", "command not found", infos);
 		return (NULL);
 	}
 	if (access(command, F_OK | X_OK) == FOUND)
@@ -60,14 +72,14 @@ char	*path_creation(t_infos *infos, char *command)
 	path_var = cmd_get_env_char(infos, "PATH");
 	if (!path_var)
 	{
-		print_error(command, "No such file or directory.");
+		print_error(command, "No such file or directory.", infos);
 		return (NULL);
 	}
 	path_command = path_finder(path_var, command);
 	if (!path_command)
 	{
 		free(path_var);
-		print_error(command, "command not found");
+		print_error(command, "command not found", infos);
 	}
 	return (path_command);
 }

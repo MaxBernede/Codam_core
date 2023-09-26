@@ -6,24 +6,31 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 15:05:51 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/25 14:23:17 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/09/21 11:42:45 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <limits.h>
 
+void	define_var(int *i, int *sign, int *numb)
+{
+	*i = 0;
+	*sign = 1;
+	*numb = 0;
+}
+
 int	ft_atoi_overflow(const char *str, int *numb)
 {
 	int	i;
 	int	sign;
 
-	i = 0;
-	*numb = 0;
-	sign = 1;
+	define_var(&i, &sign, numb);
+	if (!str)
+		return (1);
 	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
 		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
-			i++;
+		i++;
 	if (str[i] == '-')
 		sign = -1;
 	if (str[i] == '+' || str[i] == '-')

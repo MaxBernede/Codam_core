@@ -1,68 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   parser.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/09/21 11:55:22 by jmeruma       #+#    #+#                 */
+/*   Updated: 2023/09/22 13:52:59 by mbernede      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-
-
-
-void	printing(t_command *command)
-{
-	int				i;
-	t_lst_redirects	*redirect;
-
-	i = 1;
-	while (command)
-	{
-		printf("/----------------------------\\\n");
-		printf("CMD = %s\n", command->cmd_argv[0]);
-		printf("ARG = ");
-		while (command->cmd_argv[i])
-		{
-			printf("%s, ", command->cmd_argv[i]);
-			i++;
-		}
-		printf("\n");
-		printf("stdin redirect = ");
-		redirect = command->lst_redirects;
-		while (redirect)
-		{
-			if (redirect->token == STDINN_FILE)
-				printf("%s, ", redirect->filename);
-			redirect = redirect->next;
-		}
-		printf("\n");
-		printf("stdout redirect = ");
-		redirect = command->lst_redirects;
-		while (redirect)
-		{
-			if (redirect->token == STDOUT_FILE)
-				printf("%s, ", redirect->filename);
-			redirect = redirect->next;
-		}
-		printf("\n");
-		printf("append redirect = ");
-		redirect = command->lst_redirects;
-		while (redirect)
-		{
-			if (redirect->token == APPEND_FILE)
-				printf("%s, ", redirect->filename);
-			redirect = redirect->next;
-		}
-		printf("\n");
-		printf("here_doc redirect = ");
-		redirect = command->lst_redirects;
-		while (redirect)
-		{
-			if (redirect->token == HERE_DOC)
-			{
-				printf("%s, ", redirect->filename);
-				//here_doc(redirect->filename);
-			}
-			redirect = redirect->next;
-		}
-		printf("\n");
-		printf("/----------------------------\\\n");
-		command = command->next;
-		i = 1;
-	}
-}
 
 t_command	*parser(char *line, t_infos *infos)
 {
@@ -73,16 +21,18 @@ t_command	*parser(char *line, t_infos *infos)
 	if (*line == '\0')
 		return (NULL);
 	if (ft_lexer(&lexer, line))
-		return (NULL);
+		return (void_ret_error("Parsing ERROR\n", 2, infos), NULL);
 	tokenizer(&lexer);
 	if (expanding(&lexer, infos))
-		return (lexer_free(&lexer), NULL);
-	remove_quotes(&lexer);
+		return (lexer_free(&lexer), infos->error = 1, NULL);
+	if (remove_quotes(&lexer))
+		return (lexer_free(&lexer), \
+		void_ret_error("Quotes Fial\n", 2, infos), NULL);
 	command = ft_calloc(1, sizeof(t_command));
 	if (!command)
-		return (lexer_free(&lexer), NULL);
+		return (lexer_free(&lexer), infos->error = 1, NULL);
 	if (parse_struct_command(&lexer, command))
-		return (lexer_free(&lexer), NULL);
+		return (lexer_free(&lexer), infos->error = 2, NULL);
 	lexer_free(&lexer);
 	return (command);
 }

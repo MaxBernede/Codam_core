@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   exp_utils.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/09/21 11:55:41 by jmeruma       #+#    #+#                 */
+/*   Updated: 2023/09/21 15:37:22 by mbernede      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 bool	quote_status(bool quotes)
@@ -24,20 +36,19 @@ bool	is_redirect(t_token token)
 	return (false);
 }
 
-bool	ambiguous_redir(t_lexer	** lexer, t_lexer *node, char *str)
+bool	ambiguous_redir(t_lexer	**lexer, t_lexer *node, char *str)
 {
 	t_lexer	*prev_node;
 
 	prev_node = *lexer;
 	while (prev_node->next && prev_node->next != node)
 		prev_node = prev_node->next;
-	if	(!is_redirect(prev_node->token))
+	if (!is_redirect(prev_node->token))
 		return (false);
-	write(2, "minishell: ", 6);
+	write(2, "minishell: ", 11);
 	write(2, str, ft_strlen(str));
 	write(2, ": ambiguous redirect\n", 21);
 	return (true);
-
 }
 
 int	env_name_lenght(char *line, int index, int i)

@@ -1,4 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   parse_command.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/09/21 11:55:07 by jmeruma       #+#    #+#                 */
+/*   Updated: 2023/09/22 13:47:33 by mbernede      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
+
+void	ft_free_lst(t_node *head)
+{
+	t_node	*next;
+	t_node	*current;
+
+	current = head;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current->name);
+		free(current->data);
+		free(current);
+		current = next;
+	}
+}
 
 int	unexpected_token(t_lexer *node)
 {
@@ -7,7 +35,6 @@ int	unexpected_token(t_lexer *node)
 	write(2, "syntax error near unexpected token `", 36);
 	write(2, node->argument, ft_strlen(node->argument));
 	write(2, "'\n", 2);
-	g_glo.error = 258;
 	return (ERROR);
 }
 
@@ -21,9 +48,10 @@ int	fill_struct(t_lexer *node, t_command *command, const t_parse_meta *meta)
 		{
 			if (node->next == NULL || \
 			(node->next->token != TEXT_TOKEN && node->token != PIPE))
-				return (unexpected_token(node->next));
+				return (ft_2dfree(command->cmd_argv), \
+				unexpected_token(node->next));
 			if (meta[node->token](node->next, command, node->token))
-				return (ERROR);
+				return (ft_2dfree(command->cmd_argv), ERROR);
 			if (node->token == PIPE)
 				break ;
 			node = node->next;
@@ -53,8 +81,8 @@ int	parse_struct_command(t_lexer **lexer, t_command *command)
 	node = *lexer;
 	command->cmd_argv = ft_calloc(1, sizeof(char *));
 	if (!(command->cmd_argv))
-		return (ERROR);
+		return (ret_error("Malloc Fail\n", 2, ERROR));
 	if (fill_struct(node, command, parse_meta))
-		return (ERROR);
+		return (free(command), ERROR);
 	return (SUCCES);
 }

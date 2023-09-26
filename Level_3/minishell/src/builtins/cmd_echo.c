@@ -1,7 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   cmd_echo.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/08/31 13:45:15 by mbernede      #+#    #+#                 */
+/*   Updated: 2023/09/22 14:01:36 by mbernede      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-// #include <stdio.h>
-// #include <stdbool.h>
-// #include <unistd.h>
 
 int	is_endline(char *str, bool *n)
 {
@@ -49,8 +58,7 @@ void	echoprint(char *str)
 	}
 }
 
-// echo is working now with str as argv skipping the first argument
-void	cmd_echo(t_command *cmd)
+void	cmd_echo(t_command *cmd, t_infos *infos)
 {
 	bool	n;
 	int		i;
@@ -72,6 +80,5 @@ void	cmd_echo(t_command *cmd)
 	}
 	if (n == false)
 		write(1, "\n", 1);
-	g_glo.error = 0;
-	return ;
+	infos->error = 0;
 }
