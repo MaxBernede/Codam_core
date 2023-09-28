@@ -6,12 +6,14 @@ Fixed::Fixed() {
     _number = 0;
 }
 
-Fixed::Fixed(const int n) : _number(n) {
+Fixed::Fixed(const int n){
     std::cout << "Fixed Constructor called" << std::endl;
+    this->_number = n << this->_fractional_bits;
 }
 
-Fixed::Fixed(const float f) : _number(n) {
+Fixed::Fixed(const float f){
     std::cout << "Fixed Constructor called" << std::endl;
+    this->_number =  roundf(f * (1 << this->_fractional_bits));
 }
 
 Fixed::~Fixed() {
@@ -37,4 +39,12 @@ int Fixed::getRawBits() const{
 
 void  Fixed::setRawBits(int const raw){
     _number = raw;
+}
+
+float Fixed::toFloat( void ) const{
+
+}
+
+int Fixed::toInt( void ) const{
+
 }
