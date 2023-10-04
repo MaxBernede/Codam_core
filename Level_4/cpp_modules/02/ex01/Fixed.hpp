@@ -17,17 +17,16 @@ public:
 	// Operator overload
 	Fixed &operator=(const Fixed &obj);
 
-	Fixed &operator<<(const Fixed &obj);
-
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 	float toFloat( void ) const;
 	int toInt( void ) const;
 private:
-	int	_number;
+	int	_raw;
 	static const int _fractional_bits = 8;
 };
 
-std::ostream	&operator<<(std::ostream &out, Fixed &obj);
+std::ostream	&operator<<(std::ostream &out, const Fixed &obj);
+
 
 #endif
