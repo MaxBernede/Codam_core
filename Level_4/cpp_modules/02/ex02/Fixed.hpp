@@ -32,10 +32,16 @@ public:
 	Fixed &operator-(const Fixed& obj);
 
 	//Member Functions
-	Fixed &min(Fixed &obj1, Fixed &obj2);
-	Fixed &max(Fixed &obj1, Fixed &obj2);
-	Fixed &min(const Fixed &obj1, const Fixed &obj2);
-	Fixed &max(const Fixed &obj1, const Fixed &obj2);
+	static Fixed &min(Fixed &obj1, Fixed &obj2);
+	static Fixed &max(Fixed &obj1, Fixed &obj2);
+	static const Fixed &min(const Fixed &obj1, const Fixed &obj2);
+	static const Fixed &max(const Fixed &obj1, const Fixed &obj2);
+
+	//Increase decrease
+	Fixed &operator++();
+	Fixed &operator++(int);
+	Fixed &operator--();
+	Fixed &operator--(int);
 
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
