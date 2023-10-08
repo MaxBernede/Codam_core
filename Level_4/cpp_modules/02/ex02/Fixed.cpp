@@ -121,20 +121,26 @@ const Fixed &Fixed::max(const Fixed &obj1, const Fixed &obj2){
 }
 
 //Increase decrease
-Fixed &operator++(){
-
+Fixed &Fixed::operator++(){
+    this->_raw++;
+    return *this;
 }
 
-Fixed &operator++(int){
-
+Fixed Fixed::operator++(int){
+    Fixed temp = *this;
+    this->_raw++;
+    return temp;
 }
 
-Fixed &operator--(){
-
+Fixed &Fixed::operator--(){
+    this->_raw--;
+    return *this;
 }
 
-Fixed &operator--(int){
-    
+Fixed Fixed::operator--(int){
+    Fixed temp = *this;
+    this->_raw--;
+    return temp;  
 }
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &obj){

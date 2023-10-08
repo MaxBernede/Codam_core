@@ -25,7 +25,20 @@ std::cout << Fixed::min( a, b ) << std::endl;
 std::cout << Fixed::max( a, b ) << std::endl;
 std::cout << Fixed::max( c, d ) << std::endl;
 std::cout << Fixed::min( d, e ) << std::endl;
+
+//Increment
+
+std::cout << "start of increment\n" << a << std::endl;
+a++;
+std::cout << a << std::endl;
+--a;
+--a;
+std::cout << a << std::endl;
+return 0;
 }
+
+
+
 //codam tests
 {
 Fixed a;
@@ -37,7 +50,6 @@ std::cout << a++ << std::endl;
 std::cout << a << std::endl;
 std::cout << b << std::endl;
 std::cout << Fixed::max( a, b ) << std::endl;
-return 0;
 }
 
 
