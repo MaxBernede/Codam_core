@@ -1,12 +1,12 @@
 NAME := exe
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g -Wshadow
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g -Wshadow
 RM := rm -rf
 
-SRC :=	main.cpp	\
-		Fixed.cpp	\
+SRC :=	main.cpp		\
+		Bureaucrat.cpp	\
 
-INC:=	Fixed.hpp	\
+INC:=	Bureaucrat.hpp	\
 
 OBJ_DIR :=	./obj
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
