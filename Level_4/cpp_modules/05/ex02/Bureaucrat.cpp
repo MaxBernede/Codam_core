@@ -66,7 +66,7 @@ void Bureaucrat::set_grade(int i){
     this->_grade = i;
 }
 
-void Bureaucrat::signForm(Form &form){
+void Bureaucrat::signForm(AForm &form){
 	try{
         form.beSigned(*this);
         std::cout << _name << " signed " << form.getName() << std::endl;

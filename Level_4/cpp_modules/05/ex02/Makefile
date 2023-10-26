@@ -3,10 +3,9 @@ CXX := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 RM := rm -rf
 
-SRC :=	main.cpp		\
-		Bureaucrat.cpp	\
+SRC := $(wildcard *.cpp)
 
-INC:=	Bureaucrat.hpp	\
+INC:=	$(wildcard *.hpp)
 
 OBJ_DIR :=	./obj
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
