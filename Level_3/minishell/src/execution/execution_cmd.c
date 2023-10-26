@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   execution_cmd.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/21 17:11:22 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/09/27 18:40:36 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/09/28 15:00:46 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ bool	start_read(t_command *cmd, t_infos *infos, int *check, int priority)
 		*check = FILE;
 		redi = redi->next;
 	}
-	if (cmd->order <= 1 && *check == FILE && priority == 2)
+	if (cmd->order > FIRST_CMD && *check == FILE && priority == 2)
 		close(infos->read_fd);
 	if (priority != 2)
 		return (close(fd), true);
@@ -128,30 +128,6 @@ bool	dup_redirects(t_command *cmd, t_infos *infos)
 		return (false);
 	if (!dup_read(cmd, infos, check_read))
 		return (false);
-	if (!dup_write(cmd, infos, check_write))
-		return (false);
-	return (true);
-}
-
-bool	blt_dup_redirects(t_command *cmd, t_infos *infos)
-{
-	int	priority;
-	int	check_read;
-	int	check_write;
-
-	check_read = NO_FILE;
-	check_write = NO_FILE;
-	priority = check_read_priority(cmd);
-	if (priority != 0)
-	{
-		if (!start_heredoc(cmd, infos, &check_read, priority))
-			return (false);
-		if (!start_read(cmd, infos, &check_read, priority))
-			return (false);
-	}
-	if (!start_write(cmd, infos, &check_write))
-		return (false);
-	close(infos->read_fd);
 	if (!dup_write(cmd, infos, check_write))
 		return (false);
 	return (true);

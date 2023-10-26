@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/08/31 13:18:06 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/09/26 16:38:59 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/09/29 12:32:41 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define ERROR 1
 # define SUCCES 0
 # define ER_MLC "Malloc Error"
+# define ER_CD_HOME "Celeste-shell: cd: HOME not set\n"
+# define ER_CD_CURDIR "Celeste-shell: cd: error retrieving current directory:"
 
 //BUILTINS
 //arg_error_blt
@@ -80,6 +82,12 @@ bool		dup_read(t_command *command, t_infos *infos, int check);
 bool		dup_write(t_command *command, t_infos *infos, int check);
 int			check_read_priority(t_command *command);
 int			minishell_continue(t_lst_redirects **redi, bool choice);
+void		ft_read(t_command *cmd, t_infos *infos);
+bool		start_heredoc(t_command *cmd, t_infos *infos, int *check, \
+int priority);
+bool		start_read(t_command *cmd, t_infos *infos, int *check, \
+int priority);
+bool		start_write(t_command *cmd, t_infos *infos, int *check);
 
 //PARSER
 t_command	*parser(char *line, t_infos *infos);
@@ -122,6 +130,7 @@ int			list_env(char **env, t_infos *infos);
 int			ret_error(char *str, int fd, int ret);
 void		void_ret_error(char *str, int fd, t_infos *infos);
 void		exit_error(char *str, int fd, t_infos *infos);
+void		set_error(t_infos *infos, int err);
 
 //Redirect file opening
 int			here_doc(char *end_of_file, t_infos *infos);
@@ -135,6 +144,6 @@ char		**ft_split_first(char *str, char c);
 int			check_valid_id(char *str);
 int			ft_atoi64_overflow(const char *str, int64_t *numb);
 int			ft_isnumber64(char *str);
-void		fix_cmd(t_command *cmd, t_infos *infos, int *ex);
+void		fix_cmd(t_command *cmd);
 
 #endif

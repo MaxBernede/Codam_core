@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   path_creation.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/21 16:28:04 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/09/21 16:28:05 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/09/29 12:34:43 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ char	*path_creation(t_infos *infos, char *command)
 	if (*command == '\0')
 	{
 		print_error("$", "command not found", infos);
+		infos->error = 127;
 		return (NULL);
 	}
 	if (access(command, F_OK | X_OK) == FOUND)
@@ -80,6 +81,7 @@ char	*path_creation(t_infos *infos, char *command)
 	{
 		free(path_var);
 		print_error(command, "command not found", infos);
+		infos->error = 127;
 	}
 	return (path_command);
 }

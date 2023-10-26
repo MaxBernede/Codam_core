@@ -13,7 +13,7 @@ OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
-CFLAGS	:=	#-Wall -Wextra -Werror
+CFLAGS	:=	-Wall -Wextra -Werror
 RM		:=	rm -rf
 
 SRC 	:=	main.c			\
@@ -52,7 +52,6 @@ SRC 	:=	main.c			\
 			execution/get_envp.c		\
 			execution/fds.c				\
 			execution/fill_blt.c		\
-			execution/built_exec.c		\
 			utils/ret_error.c			\
 			utils/compare.c				\
 			utils/ft_isnumber.c			\

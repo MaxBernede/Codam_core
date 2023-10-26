@@ -6,14 +6,14 @@
 /*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/08/31 13:13:52 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/09/21 12:48:22 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/09/28 14:46:58 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <fcntl.h>
-
-//just filling everything before the exec, good nothing to change
+#define FILE 1
+#define NO_FILE 0
 
 void	exec_built(t_infos *infos, t_command *cmd)
 {
@@ -76,4 +76,37 @@ void	fill_blt_cmdnb(t_command *cmd)
 			cmd->order = CMD;
 		cmd = cmd->next;
 	}
+}
+
+void	ft_read(t_command *cmd, t_infos *infos)
+{
+	if (cmd->order <= FIRST_CMD)
+		infos->read_fd = -2;
+	else
+		infos->read_fd = infos->pipes[0];
+}
+
+bool	blt_dup_redirects(t_command *cmd, t_infos *infos)
+{
+	int	priority;
+	int	check_read;
+	int	check_write;
+
+	check_read = NO_FILE;
+	check_write = NO_FILE;
+	priority = check_read_priority(cmd);
+	if (priority != 0)
+	{
+		if (!start_heredoc(cmd, infos, &check_read, priority))
+			return (false);
+		if (!start_read(cmd, infos, &check_read, priority))
+			return (false);
+	}
+	if (!start_write(cmd, infos, &check_write))
+		return (false);
+	if (infos->read_fd > 0)
+		close(infos->read_fd);
+	if (!dup_write(cmd, infos, check_write))
+		return (false);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/08/31 13:13:50 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/09/27 19:10:23 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/09/29 12:32:18 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,55 +19,32 @@ void	exec_cmd_child(t_command *cmd, t_infos *infos)
 {
 	char	*path;
 
-	//this line kinda fix the cat | cat | ls until cat tho
-	//close(infos->pipes[0]);
-	if (cmd->order < LAST_CMD)
+	if (cmd->order != LAST_CMD && cmd->order != ONE_CMD)
 		close(infos->pipes[0]);
-	mainsignal(0);
-	//WTF IM DRUNK AF 
-	// if (cmd->order == LAST_CMD)
-	// 	close(infos->pipes[1]);
+	mainsignal(3);
 	if (!dup_redirects(cmd, infos))
 		exit(EXIT_FAILURE);
 	if (cmd->cmd_is_blt != NOT_BUILT)
 		exec_built(infos, cmd);
 	else
 	{
-		if (cmd->cmd_argv[0][0] == '.')
-			path = cmd->cmd_argv[0];
-		else
+		if (cmd->cmd_argv[0][0] != '.')
 			path = path_creation(infos, cmd->cmd_argv[0]);
+		else
+			path = cmd->cmd_argv[0];
 		if (path)
 		{
 			execve(path, cmd->cmd_argv, get_envp(infos));
 			print_error(cmd->cmd_argv[0], strerror(errno), infos);
+			set_error(infos, errno);
 		}
-		if (errno == 13)
-			infos->error = 126;
-		else
-			infos->error = 127;
 	}
 	exit(infos->error);
 }
 
-void	ft_read(t_command *cmd, t_infos *infos)
+int	commands(t_command *cmd, t_infos *infos, int id)
 {
-	if (cmd->order <= FIRST_CMD)
-		infos->read_fd = -2;
-	else
-		infos->read_fd = infos->pipes[0];
-}
-
-//not used yet
-void	close_infos_pipes(t_infos *infos)
-{
-	close(infos->pipes[0]);
-	close(infos->pipes[1]);
-}
-
-int	commands(t_command *cmd, t_infos *infos, int id, int ex)
-{
-	while (cmd && id != 0 && ex)
+	while (cmd && id != 0)
 	{
 		ft_read(cmd, infos);
 		if (cmd->order != ONE_CMD && cmd->order != LAST_CMD)
@@ -94,7 +71,17 @@ void	wait_exec(int id, t_infos *infos)
 	int32_t	status;
 
 	waitpid(id, &status, 0);
-	if (WIFEXITED(status))
+	if (status == 2)
+	{
+		printf("\n");
+		infos->error = 130;
+	}
+	if (status == 131 || status == 3)
+	{
+		ft_putstr_fd("Quit (core dumped)\n", 2);
+		infos->error = 131;
+	}
+	else if (WIFEXITED(status))
 		infos->error = WEXITSTATUS(status);
 	while (wait(NULL) != -1)
 		;
@@ -123,18 +110,15 @@ void	one_blt(t_command *cmd, t_infos *infos)
 void	start_exec(t_command *cmd, t_infos *infos)
 {
 	int		id;
-	int		execution;
 
 	id = 1;
-	execution = 1;
 	fill_blt_cmdnb(cmd);
 	if ((cmd->next == NULL) && (cmd->cmd_is_blt > NOT_BUILT))
 		return (one_blt(cmd, infos));
 	if (cmd && cmd->cmd_argv[0] && !cmd->cmd_argv[0][0])
-		fix_cmd(cmd, infos, &execution);
+		fix_cmd(cmd);
 	mainsignal(1);
-	id = commands(cmd, infos, id, execution);
+	id = commands(cmd, infos, id);
 	wait_exec(id, infos);
-	close(infos->pipes[0]);
 	mainsignal(0);
 }
