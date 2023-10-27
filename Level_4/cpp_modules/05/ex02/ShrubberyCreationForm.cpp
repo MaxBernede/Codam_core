@@ -20,6 +20,15 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) {
 }
 
 //!FUNCTIONS
-void ShrubberyCreationForm::exe() {
-    std::cout << "TREE" << std::endl;
+void ShrubberyCreationForm::exe() const{
+	std::fstream my_file;
+    std::string file_name;
+    file_name = target + "_shrubbery";
+	my_file.open(file_name.c_str(), std::ios::trunc | std::ios::out);
+	if (!my_file)
+		std::cout << "Error: File not created!" << std::endl;
+	else {
+		my_file << "         |\n        -+-\n         A\n        /=\\               /\\  /\\    ___  _ __  _ __ __    __\n      i/ O \\i            /  \\/  \\  / _ \\| '__|| '__|\\ \\  / /\n      /=====\\           / /\\  /\\ \\|  __/| |   | |    \\ \\/ /\n      /  i  \\           \\ \\ \\/ / / \\___/|_|   |_|     \\  /\n    i/ O * O \\i                                       / /\n    /=========\\        __  __                        /_/    _\n    /  *   *  \\        \\ \\/ /        /\\  /\\    __ _  ____  | |\n  i/ O   i   O \\i       \\  /   __   /  \\/  \\  / _` |/ ___\\ |_|\n  /=============\\       /  \\  |__| / /\\  /\\ \\| |_| |\\___ \\  _\n  /  O   i   O  \\      /_/\\_\\      \\ \\ \\/ / / \\__,_|\\____/ |_|\ni/ *   O   O   * \\i\n/=================\\\n       |___|\n";
+		my_file.close();
+	}
 }

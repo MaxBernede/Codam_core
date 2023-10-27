@@ -65,6 +65,17 @@ void AForm::beSigned(Bureaucrat &B){
     is_signed = true;
 }
 
+void AForm::execute(Bureaucrat const &executor) const{
+    if (executor.getGrade() > this->getGradeExecute()){
+        std::cout << "AForm not executed : " << std::endl;
+        throw GradeTooLowException();
+    }
+    if (is_signed)
+        exe();
+    else
+        std::cout << "AForm not executed because is not signed" << std::endl;
+}
+
 //!OVERLOAD OPERATOR
 std::ostream	&operator<<(std::ostream &out, const AForm &obj){
     return (out << obj.getName() << ", Aform is signed : " << obj.getIsSigned() << ", exe : " << obj.getGradeExecute() << ", required : " << obj.getGradeRequired() << ".");
