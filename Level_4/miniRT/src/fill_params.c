@@ -2,44 +2,18 @@
 
 int fill_camera(char **split, t_param *param)
 {
-	//if ()
-	return (OK);
-}
+	t_camera *t;
 
-//ERROR == 1
-int	is_colors(char *s, int *r, int *g, int *b)
-{
-	char **split;
-
-	if (ft_strlen(s) > 11)
+	t = &param->camera;
+	if (ft_2d_arrlen(split) != 4)
 		return (ERROR);
-	split = ft_split(s, ',');
-	if (!split)
+	if (is_coords(split[1], &t->x, &t->y, &t->z))
+		return (ERROR);	
+	if (is_vectors(split[2], &t->vec_x, &t->vec_y, &t->vec_z))
 		return (ERROR);
-	if (ft_2d_arrlen(split) != 3)
-		return (ft_2dfree(split), ERROR);
-	
-	return (OK);
-}
-
-//return ERROR == 1 in case of error otherwise fill the data
-int is_scale(char *s, float *f)
-{
-	int i;
-
-	if (ft_strlen(s) > 5)
+	if (is_fov(split[3], &t->fov))
 		return (ERROR);
-	if (!cmp(s, "1"))
-		*f = 1;
-	else if (!cmp(s, "0"))
-		*f = 0;
-	else
-	{
-		if (ft_strncmp(s, "0.", 2))
-			return (ERROR);
-		i = ft_atoi(s+2);
-		*f = i / 10.0;
-	}
+	printf("%d,%d,%d  %f,%f,%f  %d\n",t->x, t->y, t->z, t->vec_x, t->vec_y, t->vec_z, t->fov);
 	return (OK);
 }
 
@@ -47,35 +21,32 @@ int fill_ambiant(char **split, t_param *param)
 {
 	t_ambiant *t;
 
-	t = &param->light;
+	t = &param->a_light;
 	if (ft_2d_arrlen(split) != 3)
 		return (ERROR);
 	if (is_scale(split[1], &t->scale))
 		return (ERROR);
 	if (is_colors(split[2], &t->color.r, &t->color.g, &t->color.b))
 		return (ERROR);
-	printf("%f %d %d %d\n", param->light.scale, param->light.color.r, param->light.color.g, param->light.color.b);
+	printf("%f %d %d %d\n", param->a_light.scale, param->a_light.color.r, param->a_light.color.g, param->a_light.color.b);
 	return (OK);
 }
 
 int add_light(char **split, t_param *param)
 {
+	
 	return (OK);
 }
 
 int fill_window(char **split, t_param *param)
 {
-	int width;
-	int height;
-
-	if (ft_2d_arrlen(split) != 3)
+	if (ft_2d_arrlen(split) != 3 || ft_is_number(split[1]) || ft_is_number(split[2]))
 		return (ERROR);
-	if (ft_atoi_overflow(split[1], &width))
+	if (ft_atoi_overflow(split[1], &param->window.width))
 		return (ERROR);
-	if (ft_atoi_overflow(split[2], &height))
+	if (ft_atoi_overflow(split[2], &param->window.height))
 		return (ERROR);
-	param->window.width = width;
-	param->window.height = height;
+	printf("%d x %d \n", param->window.width, param->window.height);
 	return (OK);
 }
 

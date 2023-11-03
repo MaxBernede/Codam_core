@@ -19,7 +19,12 @@ SRC :=	main.c			\
 		parsing.c		\
 		camera.c		\
 		fill_params.c	\
-		utils.c			\
+		utils/utils.c	\
+		utils/is.c		\
+		utils/is_camera.c	\
+		utils/is_numbers.c	\
+		utils/to.c			\
+		utils/fill_to_null.c\
 
 OBJ := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))

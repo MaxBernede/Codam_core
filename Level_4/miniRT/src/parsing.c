@@ -9,10 +9,14 @@ int add_element(char **split, t_param *param)
 int check_line(char *line, t_param *param)
 {
 	char **split;
+	char *sub;
 
-	if (!line || !line[0] || line[0] == '#')
+	//removed the \n of the line 
+	sub = ft_substr(line, 0, ft_strlen(line)-1);
+	if (!sub || !sub[0] || sub[0] == '#')
 		return (OK);
-	split = ft_split(line, ' ');
+	split = ft_split(sub, ' ');
+	free(sub);
 	if (ft_strlen(split[0]) == 2 && add_element(split, param))
 			return (ft_2dfree(split), ERROR);
 	else if (ft_strlen(split[0]) == 1 && add_param(split, param))
