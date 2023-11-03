@@ -14,7 +14,13 @@ MACOS := -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib" -framework Cocoa -framew
 OBJ_DIR := ./obj
 SRC_DIR := ./src
 HEADERS := libft/libft.h includes/minirt.h includes/struct.h
-SRC := main.c
+SRC :=	main.c			\
+		valid_input.c	\
+		parsing.c		\
+		camera.c		\
+		fill_params.c	\
+		utils.c			\
+
 OBJ := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))
 
