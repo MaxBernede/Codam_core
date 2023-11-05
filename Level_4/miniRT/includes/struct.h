@@ -17,14 +17,23 @@ typedef struct s_color
 	int b;
 }	t_color;
 
+typedef struct s_position
+{
+	float x;
+	float y;
+	float z;
+}	t_position;
+
+typedef struct s_triangle
+{
+	t_position a;
+	t_position b;
+	t_position c;
+}	t_triangle;
 typedef struct s_camera
 {
-	int x;
-	int y;
-	int z;
-	float vec_x;
-	float vec_y;
-	float vec_z;
+	t_position	p;
+	t_position	vec;
 	int fov;
 }	t_camera;
 
@@ -41,33 +50,31 @@ typedef struct s_window
 }	t_window;
 typedef struct s_light
 {
-	int x;
-	int y;
-	int z;
 	float scale;
+	t_position p;
 	t_color color;
 	struct s_light *next;
 }	t_lights;
 
-typedef struct s_element
+typedef struct s_shapes
 {
-	int x;
-	int y;
-	int z;
 	t_type type;
+	t_position p;
+	t_position vec;
+	t_triangle t;
 	float scale;
 	float radius;
 	float height;
 	t_color color;
-	struct s_element *next;
-}	t_element;
+	struct s_shapes *next;
+}	t_shapes;
 typedef struct s_param
 {
 	t_window	window;
 	t_camera	camera;
 	t_ambiant	a_light;
 	t_lights	*lights;
-	t_element	*element;
+	t_shapes	*shapes;
 }	t_param;
 
 

@@ -11,13 +11,14 @@ int check_line(char *line, t_param *param)
 	char **split;
 	char *sub;
 
-	//removed the \n of the line 
+	if (!line || !cmp(line, "\n"))
+		return (OK);
 	sub = ft_substr(line, 0, ft_strlen(line)-1);
 	if (!sub || !sub[0] || sub[0] == '#')
 		return (OK);
 	split = ft_split(sub, ' ');
 	free(sub);
-	if (ft_strlen(split[0]) == 2 && add_element(split, param))
+	if (ft_strlen(split[0]) == 2 && add_shape(split, param))
 			return (ft_2dfree(split), ERROR);
 	else if (ft_strlen(split[0]) == 1 && add_param(split, param))
 			return (ft_2dfree(split), ERROR);

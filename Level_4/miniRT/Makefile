@@ -7,7 +7,7 @@ INCLUDES := -I libft -I MLX42 -I includes
 
 # Compiler and Flags
 CC := gcc
-CFLAGS :=# -Wall -Wextra -Werror
+CFLAGS := -g -fsanitize=address# -Wall -Wextra -Werror
 MACOS := -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib" -framework Cocoa -framework OpenGL -framework IOKit
 
 # Directories and Files
@@ -19,12 +19,18 @@ SRC :=	main.c			\
 		parsing.c		\
 		camera.c		\
 		fill_params.c	\
+		fill_shapes.c	\
+		utils/clean.c	\
 		utils/utils.c	\
 		utils/is.c		\
 		utils/is_camera.c	\
+		utils/prints.c		\
 		utils/is_numbers.c	\
+		utils/ft_atof.c		\
 		utils/to.c			\
 		utils/fill_to_null.c\
+		lights/lights_nodes.c\
+		shapes/shapes_nodes.c\
 
 OBJ := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))
@@ -36,9 +42,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo $(Yellow) Building.. 🏠$(Color_Off)
-	@make -C MLX42/build
+	@make -C MLX42/build 2> /dev/null 
 	@$(MAKE) -C libft bonus
-	@$(CC) -o $(NAME) $^ $(LIBSA) $(INCLUDES) $(MACOS)
+	@$(CC) -o $(NAME) $^ $(LIBSA) $(CFLAGS) $(INCLUDES) $(MACOS)
 	@echo $(Green) Complete ✅ $(Color_Off)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) | $(OBJ_DIR)

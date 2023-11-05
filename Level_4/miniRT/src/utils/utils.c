@@ -27,7 +27,6 @@ void	ft_2d_print(char **str)
 	}
 }
 
-
 //0 is ==   -1 is error
 int	cmp(char *s1, char *s2)
 {

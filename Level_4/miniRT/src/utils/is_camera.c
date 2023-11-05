@@ -10,7 +10,7 @@ int	is_fov(char *s, int *fov)
 	return (OK);
 }
 
-int	is_coords(char *s, int *x, int *y, int *z)
+int	is_coords(char *s, float *x, float *y, float *z)
 {
 	char **split;
 
@@ -19,17 +19,18 @@ int	is_coords(char *s, int *x, int *y, int *z)
 		return (ERROR);
 	if (ft_2d_arrlen(split) != 3)
 		return (ft_2dfree(split), ERROR);
-	if (is_neg_numbers(split[0], split[1], split[2]))
+	if (is_floats(split[0], split[1], split[2]))
 		return (ft_2dfree(split), ERROR);
-	*x = ft_atoi(split[0]);
-	*y = ft_atoi(split[1]);
-	*z = ft_atoi(split[2]);
+	*x = ft_atof(split[0]);
+	*y = ft_atof(split[1]);
+	*z = ft_atof(split[2]);
 	if ((*x > 10000 && *x < 10000)|| (*y > 10000 && *y < 10000)\
 	 ||(*z > 10000 && *z < 10000))
 		return (ft_2dfree(split), ERROR);
 	return (ft_2dfree(split), OK);
 }
 
+//only works with 0. maybe make a iscoords and is vectors in one
 int	is_vectors(char *s, float *vx, float *vy, float *vz)
 {
 	char **split;
@@ -44,4 +45,14 @@ int	is_vectors(char *s, float *vx, float *vy, float *vz)
 	if (to_decimal(split[0], vx) || to_decimal(split[1], vy) || to_decimal(split[2], vz))
 		return (ft_2dfree(split), ERROR);
 	return (ft_2dfree(split),OK);
+}
+
+//! TAKE CARE OVERFLOWS OR VALUE THAT ARE MAX 1 AND MIN 0
+int	fill_float(char *s, float *f)
+{
+	// if (is_neg_deci_nb(s))
+	// 	return (ERROR);
+	if (to_decimal(s, f))
+		return (ERROR);
+	return (OK);
 }

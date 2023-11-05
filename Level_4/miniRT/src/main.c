@@ -6,10 +6,14 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 		return (printf(ERR_ARG), 1);
+	init_null(&param);
 	if (check_file(argv[1]))
 		return (1);
 	if (fill_datas(argv[1], &param))
 		return (1);
+	print_param(&param);
+	clean_everything(&param);
+	return (0);
 }
 
 // #define WIDTH 512
