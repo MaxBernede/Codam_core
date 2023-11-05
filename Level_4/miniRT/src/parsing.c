@@ -38,9 +38,10 @@ int fill_datas(char *arg, t_param *param)
 	while (line)
 	{
 		if (check_line(line, param))
-			return (free(line), printf(ERR_FILE_DATA), ERROR);
+			return (free(line), printf(ERR_FILE_DATA), close(fd), ERROR);
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	return (OK);
 }
