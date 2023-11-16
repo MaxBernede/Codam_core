@@ -1,9 +1,9 @@
 #include "minirt.h"
 
-float ft_atof(char *nptr)
+double ft_atof(char *nptr)
 {
-    float result = 0.0;
-    float fraction = 0.1;
+    double result = 0.0;
+    double fraction = 0.1;
     int sign = 1;
 
     while (ft_isspace(*nptr))

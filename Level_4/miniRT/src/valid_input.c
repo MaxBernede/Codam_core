@@ -36,4 +36,5 @@ bool check_file(char *arg)
 		return (printf(ERR_FILE), 1);
 	if (!endswith(arg, ".rt"))
 		return (printf(ERR_NORT), 1);
+	return (OK);
 }

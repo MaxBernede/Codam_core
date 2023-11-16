@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include "struct.h"
+#include "vectors.h"
 #include "libft.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
@@ -49,6 +50,12 @@ int add_param(char **split, t_param *param);
 //parsing.c
 int	fill_datas(char *arg, t_param *param);
 
+//!MLX
+void my_hook(void* param);
+
+//!START
+int start(t_param *param, t_window w);
+
 //!LIGHTS
 t_lights *create_light_node();
 t_lights *insert_light_start(t_lights *head, t_lights *new_light);
@@ -75,12 +82,12 @@ void print_light(t_lights *light);
 void clean_everything(t_param *param);
 
 //ft_atof.c
-float ft_atof(char *nptr);
+double ft_atof(char *nptr);
 //is_camera.c
 int is_fov(char *s, int *fov);
-int	is_coords(char *s, float *x, float *y, float *z);
-int	is_vectors(char *s, float *r, float *g, float *b);
-int	fill_float(char *s, float *f);
+int	is_coords(char *s, double *x, double *y, double *z);
+int	is_vectors(char *s, double *r, double *g, double *b);
+int	fill_double(char *s, double *f);
 
 //is_numbers.c
 int is_numbers(char *a, char *b, char *c);
@@ -89,13 +96,13 @@ int is_neg_numbers(char *a, char *b, char *c);
 int ft_is_neg_number(char *s);
 int is_neg_deci_numbers(char *a, char *b, char *c);
 int is_neg_deci_nb(char *s);
-int is_floats(char *a, char *b, char *c);
+int is_doubles(char *a, char *b, char *c);
 int ft_is_f(char *s);
 
 //to.c
-int	to_decimal(char *s, float *f);
+int	to_decimal(char *s, double *f);
 
-int is_scale(char *s, float *f);
+int is_scale(char *s, double *f);
 int	is_colors(char *s, int *r, int *g, int *b);
 
 //fill_to_null.c

@@ -13,7 +13,7 @@ MACOS := -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib" -framework Cocoa -framew
 # Directories and Files
 OBJ_DIR := ./obj
 SRC_DIR := ./src
-HEADERS := libft/libft.h includes/minirt.h includes/struct.h
+HEADERS := libft/libft.h includes/minirt.h includes/struct.h includes/vectors.h
 SRC :=	main.c			\
 		valid_input.c	\
 		parsing.c		\
@@ -30,7 +30,10 @@ SRC :=	main.c			\
 		utils/to.c			\
 		utils/fill_to_null.c\
 		lights/lights_nodes.c\
-		shapes/shapes_nodes.c\
+		vec/vectors.c 	\
+		shapes/shapes_nodes.c \
+		mlx/start.c		\
+		mlx/hook.c			\
 
 OBJ := $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))

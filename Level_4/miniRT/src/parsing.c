@@ -2,7 +2,7 @@
 
 int add_element(char **split, t_param *param)
 {
-
+	return (OK);
 }
 
 //check if needed to split based on isspace

@@ -12,15 +12,17 @@ int main(int argc, char **argv)
 	if (fill_datas(argv[1], &param))
 		return (1);
 	print_param(&param);
+	if (start(&param, param.window))
+		return (0);
 	clean_everything(&param);
 	return (0);
 }
 
-// #define WIDTH 512
-// #define HEIGHT 512
-// static mlx_image_t* image;
+#define WIDTH 512
+#define HEIGHT 512
+static mlx_image_t* image;
 
-// // -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 // int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 // {
@@ -60,7 +62,7 @@ int main(int argc, char **argv)
 // 		image->instances[0].x += 5;
 // }
 
-// // -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 // int32_t main(int32_t argc, const char* argv[])
 // {

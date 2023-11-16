@@ -14,7 +14,7 @@ int is_neg_numbers(char *a, char *b, char *c)
 	return (OK);
 }
 
-int is_floats(char *a, char *b, char *c)
+int is_doubles(char *a, char *b, char *c)
 {
 	if (ft_is_f(a) || ft_is_f(b) || ft_is_f(c))
 		return (ERROR);

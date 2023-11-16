@@ -68,16 +68,16 @@ int add_param(char **split, t_param *param)
 {
 	char type;
 
-	type = split[0][0];
+	type = ft_tolower(split[0][0]);
 	if (type == 'c' && fill_camera(split, param))
 		return (printf(ERR_CAM), ERROR);
-	else if (type == 'A' && fill_ambiant(split, param))
+	else if (type == 'a' && fill_ambiant(split, param))
 		return (printf(ERR_AMB_LIGHT), ERROR);
 	else if (type == 'l' && add_light(split, param))
 		return (printf(ERR_LIGHT), ERROR);
-	else if (type == 'R' && fill_window(split, param))
+	else if (type == 'r' && fill_window(split, param))
 		return (printf(ERR_WINDOW), ERROR);
-	else if (type != 'c' && type != 'A' && type != 'l' && type != 'R')
+	else if (type != 'c' && type != 'a' && type != 'l' && type != 'r')
 		return (printf(ERR_ADD_PARAM), ERROR);
 	return (OK);
 }

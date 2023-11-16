@@ -10,7 +10,7 @@ int	is_fov(char *s, int *fov)
 	return (OK);
 }
 
-int	is_coords(char *s, float *x, float *y, float *z)
+int	is_coords(char *s, double *x, double *y, double *z)
 {
 	char **split;
 
@@ -19,7 +19,7 @@ int	is_coords(char *s, float *x, float *y, float *z)
 		return (ERROR);
 	if (ft_2d_arrlen(split) != 3)
 		return (ft_2dfree(split), ERROR);
-	if (is_floats(split[0], split[1], split[2]))
+	if (is_doubles(split[0], split[1], split[2]))
 		return (ft_2dfree(split), ERROR);
 	*x = ft_atof(split[0]);
 	*y = ft_atof(split[1]);
@@ -31,7 +31,7 @@ int	is_coords(char *s, float *x, float *y, float *z)
 }
 
 //only works with 0. maybe make a iscoords and is vectors in one
-int	is_vectors(char *s, float *vx, float *vy, float *vz)
+int	is_vectors(char *s, double *vx, double *vy, double *vz)
 {
 	char **split;
 
@@ -48,7 +48,7 @@ int	is_vectors(char *s, float *vx, float *vy, float *vz)
 }
 
 //! TAKE CARE OVERFLOWS OR VALUE THAT ARE MAX 1 AND MIN 0
-int	fill_float(char *s, float *f)
+int	fill_double(char *s, double *f)
 {
 	// if (is_neg_deci_nb(s))
 	// 	return (ERROR);

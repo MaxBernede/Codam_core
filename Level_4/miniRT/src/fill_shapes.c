@@ -33,7 +33,7 @@ int add_sphere(char **split, t_param *param)
 	s->type = SPHERE;
 	if (is_coords(split[1], &s->p.x, &s->p.y, &s->p.z))
 		return (printf(ERR_FILL_POSITION),ERROR);	
-	if (fill_float(split[2], &s->radius))
+	if (fill_double(split[2], &s->radius))
 		return (printf(ERR_FILL_RADIUS),ERROR);
 	if (is_colors(split[3], &s->color.r, &s->color.g, &s->color.b))
 		return (printf(ERR_FILL_COLORS),ERROR);
@@ -55,7 +55,7 @@ int add_square(char **split, t_param *param)
 		return (printf(ERR_FILL_POSITION),ERROR);
 	if (is_coords(split[2], &s->vec.x, &s->vec.y, &s->vec.z))
 		return (printf(ERR_FILL_VECTOR),ERROR);
-	if (fill_float(split[3], &s->scale))
+	if (fill_double(split[3], &s->scale))
 		return (printf(ERR_FILL_SCALE),ERROR);
 	if (is_colors(split[4], &s->color.r, &s->color.g, &s->color.b))
 		return (printf(ERR_FILL_COLORS),ERROR);
@@ -77,9 +77,9 @@ int add_cylinder(char **split, t_param *param)
 		return (printf(ERR_FILL_POSITION),ERROR);
 	if (is_coords(split[2], &s->vec.x, &s->vec.y, &s->vec.z))
 		return (printf(ERR_FILL_VECTOR),ERROR);
-	if (fill_float(split[3], &s->radius))
+	if (fill_double(split[3], &s->radius))
 		return (printf(ERR_FILL_RADIUS),ERROR);
-	if (fill_float(split[4], &s->height))
+	if (fill_double(split[4], &s->height))
 		return (printf(ERR_FILL_HEIGHT),ERROR);
 	if (is_colors(split[5], &s->color.r, &s->color.g, &s->color.b))
 		return (printf(ERR_FILL_COLORS),ERROR);

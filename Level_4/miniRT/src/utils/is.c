@@ -21,7 +21,7 @@ int	is_colors(char *s, int *r, int *g, int *b)
 }
 
 //return ERROR == 1 in case of error otherwise fill the data
-int is_scale(char *s, float *f)
+int is_scale(char *s, double *f)
 {
 	int i;
 
