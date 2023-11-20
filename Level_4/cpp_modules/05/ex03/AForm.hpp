@@ -11,7 +11,7 @@
     public:
         AForm();
         AForm(std::string, int, int);
-        ~AForm();
+        virtual ~AForm();
 
         AForm(const AForm &obj);
         AForm &operator=(const AForm &obj);

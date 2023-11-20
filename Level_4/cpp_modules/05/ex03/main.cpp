@@ -12,28 +12,32 @@ int main(){
 	Intern someRandomIntern;
 	AForm* rrf;
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-	delete rrf;
+	if (rrf != NULL)
+		delete rrf;
 	}
 	{
 	std::cout << "\n";
 	Intern someRandomIntern;
 	AForm* rrf;
 	rrf = someRandomIntern.makeForm("wrong one", "test");
-	delete rrf;
+	if (rrf != NULL)
+		delete rrf;
 	}
 	{
 	std::cout << "\n";
 	Intern someRandomIntern;
 	AForm* rrf;
 	rrf = someRandomIntern.makeForm("shrubbery creation", "test");
-	delete rrf;
+	if (rrf != NULL)
+		delete rrf;
 	}
 	{
 	std::cout << "\n";
 	Intern someRandomIntern;
 	AForm* rrf;
 	rrf = someRandomIntern.makeForm("presidential pardon", "test");
-	delete rrf;
+	if (rrf != NULL)
+		delete rrf;
 	}
 	// try{
 	// 	King.signForm(S);
