@@ -6,7 +6,7 @@
 #    By: kyuuh <kyuuh@student.42.fr>                  +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/07 10:45:43 by mbernede      #+#    #+#                  #
-#    Updated: 2023/03/14 15:37:33 by mbernede      ########   odam.nl          #
+#    Updated: 2023/11/02 19:58:03 by maxb          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ ifdef LINUX
 endif
 
 ifndef LINUX
-	OS += -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+	OS += -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib" -framework Cocoa -framework OpenGL -framework IOKit
 endif
 
 OBJ 	:= 		$(addprefix ${OBJ_DIR},${SRCS:.c=.o})

@@ -1,0 +1,3 @@
+Vw=Vh=d=1 (same as FOV 53)
+calculation of the size of the screen itself at a 0 till 1
+check vectors dot product and additions
