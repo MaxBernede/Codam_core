@@ -59,7 +59,7 @@ int AForm::getGradeExecute() const {
 //!FUNCTIONS
 void AForm::beSigned(Bureaucrat &B){
     if (B.getGrade() > grade_required){
-        std::cout << "AForm not signed : " << std::endl;
+        std::cout << name << " not signed : " ;
         throw GradeTooLowException();
     }
     is_signed = true;
@@ -67,13 +67,15 @@ void AForm::beSigned(Bureaucrat &B){
 
 void AForm::execute(Bureaucrat const &executor) const{
     if (executor.getGrade() > this->getGradeExecute()){
-        std::cout << "AForm not executed : " << std::endl;
+        std::cout << name << " not executed : " ;
         throw GradeTooLowException();
     }
-    if (is_signed)
+    if (is_signed){
+        std::cout << executor.getName() << " executed " << name << std::endl;
         exe();
+    }
     else
-        std::cout << "AForm not executed because is not signed" << std::endl;
+        std::cout << name << " not executed because is not signed" << std::endl;
 }
 
 //!OVERLOAD OPERATOR

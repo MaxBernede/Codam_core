@@ -11,41 +11,18 @@ int main(){
 	PresidentialPardonForm P("Bad teacher");
 
 	try{
+		std::cout << "\n\n\n";
 		King.signForm(S);
 		King.signForm(R);
-		King.signForm(P);
+		Teacher.signForm(P);
 		std::cout << std::endl;
 		King.executeForm(S);
 		King.executeForm(R);
 		King.executeForm(P);
+		std::cout << "\n\n\n";
 	}
 	catch (std::exception& e){
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
-	// Bureaucrat	Ragazza("La ragazza", 139);
-
-	// ShrubberyCreationForm S("home");
-	// std::cout << std::endl;
-	// try{
-	// 	Ragazza.executeForm(S);
-	// }
-	// catch (std::exception& e){
-	// 	std::cout << "Exception: " << e.what() << std::endl;
-	// }
-	// Ragazza.increment();
-	// Ragazza.increment();
-	// try{
-	// 	Ragazza.executeForm(S);
-	// }
-	// catch (std::exception& e){
-	// 	std::cout << "Exception: " << e.what() << std::endl;
-	// }
-	// Ragazza.signForm(S);
-	// try{
-	// 	Ragazza.executeForm(S);
-	// }
-	// catch (std::exception& e){
-	// 	std::cout << "Exception: " << e.what() << std::endl;
-	// }
 	return 0;
 }
