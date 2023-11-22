@@ -2,16 +2,14 @@
 
 
 int main(){
-	// Bureaucrat	King("King", 1);
-	// Bureaucrat	Teacher("Teacher", 46);
-	// ShrubberyCreationForm S("sh");
-	// RobotomyRequestForm R("Human");
-	// PresidentialPardonForm P("Bad teacher");
+	Bureaucrat	King("King", 1);
 	{
 	std::cout << "\n\n\n";
 	Intern someRandomIntern;
-	AForm* rrf;
+	AForm *rrf;
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	King.signForm(*rrf);
+	King.executeForm(*rrf);
 	if (rrf != NULL)
 		delete rrf;
 	}
@@ -39,42 +37,5 @@ int main(){
 	if (rrf != NULL)
 		delete rrf;
 	}
-	// try{
-	// 	King.signForm(S);
-	// 	King.signForm(R);
-	// 	King.signForm(P);
-	// 	std::cout << std::endl;
-	// 	King.executeForm(S);
-	// 	King.executeForm(R);
-	// 	King.executeForm(P);
-	// }
-	// catch (std::exception& e){
-	// 	std::cout << "Exception: " << e.what() << std::endl;
-	// }
-	// Bureaucrat	Ragazza("La ragazza", 139);
-
-	// ShrubberyCreationForm S("home");
-	// std::cout << std::endl;
-	// try{
-	// 	Ragazza.executeForm(S);
-	// }
-	// catch (std::exception& e){
-	// 	std::cout << "Exception: " << e.what() << std::endl;
-	// }
-	// Ragazza.increment();
-	// Ragazza.increment();
-	// try{
-	// 	Ragazza.executeForm(S);
-	// }
-	// catch (std::exception& e){
-	// 	std::cout << "Exception: " << e.what() << std::endl;
-	// }
-	// Ragazza.signForm(S);
-	// try{
-	// 	Ragazza.executeForm(S);
-	// }
-	// catch (std::exception& e){
-	// 	std::cout << "Exception: " << e.what() << std::endl;
-	// }
 	return 0;
 }
