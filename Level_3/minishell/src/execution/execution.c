@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/08/31 13:13:50 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/09/29 12:32:18 by mbernede      ########   odam.nl         */
+/*   Updated: 2024/02/07 13:15:37 by mbernede      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exec_cmd_child(t_command *cmd, t_infos *infos)
 
 	if (cmd->order != LAST_CMD && cmd->order != ONE_CMD)
 		close(infos->pipes[0]);
-	mainsignal(3);
+	(3);
 	if (!dup_redirects(cmd, infos))
 		exit(EXIT_FAILURE);
 	if (cmd->cmd_is_blt != NOT_BUILT)
