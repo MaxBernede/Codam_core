@@ -6,7 +6,11 @@
 /*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/21 16:24:33 by mbernede      #+#    #+#                 */
+<<<<<<< HEAD
 /*   Updated: 2023/11/22 17:07:44 by mbernede      ########   odam.nl         */
+=======
+/*   Updated: 2023/11/22 15:38:26 by mbernede      ########   odam.nl         */
+>>>>>>> 7b9f7abdb1ff73840d29d8dd7f566e3bc7078d45
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +23,11 @@ extern int	g_signal;
 
 void	f_sigmain(int sig)
 {
-	if (sig == SIGINT)
-	{
-		ft_printf("\n");
-		g_signal = 130;
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-	}
-	else
-		g_signal = 131;
+	ft_printf("\n");
+	g_signal = 130;
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 void	mainsignal(int mode)

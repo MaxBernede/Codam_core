@@ -5,21 +5,21 @@
 
 int main(){
 	Bureaucrat	King("King", 1);
-	Bureaucrat	Teacher("Teacher", 46);
+	Bureaucrat	Teacher("Teacher", 124);
 	ShrubberyCreationForm S("sh");
 	RobotomyRequestForm R("Human");
 	PresidentialPardonForm P("Bad teacher");
 
 	try{
-		std::cout << "\n\n\n";
+		std::cout << "\n\n";
 		King.signForm(S);
 		King.signForm(R);
 		Teacher.signForm(P);
 		std::cout << std::endl;
-		King.executeForm(S);
+		Teacher.executeForm(S);
 		King.executeForm(R);
-		King.executeForm(P);
-		std::cout << "\n\n\n";
+		Teacher.executeForm(P);
+		std::cout << "\n\n";
 	}
 	catch (std::exception& e){
 		std::cout << "Exception: " << e.what() << std::endl;
