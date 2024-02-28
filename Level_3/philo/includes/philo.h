@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   philo.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*   By: maxb <maxb@student.42.fr>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 18:18:57 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/25 15:01:47 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/12/02 17:33:05 by maxb          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # define ERROR 1
 # define SUCCES 0
 
-# define V_TAKE_FORK 1
-# define V_EAT 2
-# define V_SLEEP 3
-# define V_THINK 4
-# define V_DIED 5
+# define V_TAKE_FORK "has taken a fork\n"
+# define V_EAT "is eating\n"
+# define V_SLEEP "is sleeping\n"
+# define V_THINK "is thinking\n"
+# define V_DIED "died\n"
 
 # define ERR_ARG "Correct Usage: ./philo <number_of_philosophers> \
 <time_to_die> <time_to_eat> <time_to_sleep> \
@@ -76,7 +76,7 @@ typedef struct s_philo_thread
 }	t_philo_thread;
 
 //actions.c
-void			print_msg(t_philo *phi, int msg, int check);
+void			print_msg(t_philo *phi, char *msg, int check);
 void			start_sleep(t_philo_thread *phi);
 void			try_eat(t_philo_thread *phi);
 

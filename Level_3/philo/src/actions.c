@@ -3,16 +3,16 @@
 /*                                                        ::::::::            */
 /*   actions.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*   By: maxb <maxb@student.42.fr>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 14:57:35 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/25 15:00:59 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/12/02 17:29:59 by maxb          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_msg(t_philo *phi, int msg, int check)
+void	print_msg(t_philo *phi, char *msg, int check)
 {
 	long long	time;
 
@@ -23,16 +23,7 @@ void	print_msg(t_philo *phi, int msg, int check)
 		pthread_mutex_unlock(phi->m_alive);
 		return ;
 	}
-	if (msg == V_TAKE_FORK)
-		printf("%lld %d has taken a fork\n", time, phi->id);
-	else if (msg == V_EAT)
-		printf("%lld %d is eating\n", time, phi->id);
-	else if (msg == V_THINK)
-		printf("%lld %d is thinking\n", time, phi->id);
-	else if (msg == V_SLEEP)
-		printf("%lld %d is sleeping\n", time, phi->id);
-	else
-		printf("%lld %d died\n", time, phi->id);
+	printf("%lld %d %s", time, phi->id, msg);
 	pthread_mutex_unlock(phi->m_alive);
 }
 

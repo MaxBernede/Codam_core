@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   time.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*   By: maxb <maxb@student.42.fr>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:56:59 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/25 15:01:10 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/12/02 17:42:14 by maxb          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	mini_sleep(int time, t_philo_thread *phi)
 	{
 		if (phi && !check_t_alive(phi->philo))
 			return (1);
-		usleep(250);
+		usleep(300);
 	}
 	return (0);
 }

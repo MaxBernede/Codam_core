@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   check.c                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mbernede <mbernede@student.codam.nl>         +#+                     */
+/*   By: maxb <maxb@student.42.fr>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 16:54:03 by mbernede      #+#    #+#                 */
-/*   Updated: 2023/07/25 14:46:39 by mbernede      ########   odam.nl         */
+/*   Updated: 2023/12/02 17:32:22 by maxb          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
