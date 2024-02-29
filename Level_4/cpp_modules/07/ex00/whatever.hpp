@@ -1,5 +1,4 @@
-#ifndef whatever_HPP
-#define whatever_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -21,5 +20,3 @@ T & max( T & a, T & b ) {
     return ( a > b ) ? a : b;
 }
 
-
-#endif

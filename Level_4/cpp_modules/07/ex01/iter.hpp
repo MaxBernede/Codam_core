@@ -3,28 +3,14 @@
 #include <iostream>
 #include <string>
 
-template< typename T >
-void swap( T & a, T & b ) {
-    T tmp = a;
-    a = b;
-    b = tmp;
+template <typename T>
+void print(T &arg){
+    std::cout << "arg : " << arg << std::endl; 
 }
 
-template< typename T >
-T & min( T & a, T & b ) {
-    return ( a < b ) ? a : b;
-}
-
-template< typename T >
-T & max( T & a, T & b ) {
-    return ( a > b ) ? a : b;
-}
-
-template< typename T >
-T & iter( T * array, size_t size, T (*f)( T & a, T & b ) ) {
-    T & result = array[0];
-    for ( size_t i = 1; i < size; i++ ) {
-        result = f( result, array[i] );
+template< typename T, typename F >
+void iter( T * array, size_t size, F f) {
+    for ( size_t i = 0; i < size; i++ ) {
+        f(array[i]);
     }
-    return result;
 }
