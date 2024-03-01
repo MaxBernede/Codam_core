@@ -9,16 +9,23 @@ class Array {
 public:
     Array();
     Array(unsigned int size);
-    ~Array(); // Destructor to free memory
+    ~Array();
     void print();
 
     // Canonical form
+    T& operator[](int index);
     Array<T>& operator=(const Array<T>& obj);
-    //Array(const Array<T> &obj);
+    Array(const Array<T> &obj);
 
-    T* array;
+    int size() const;
+    // T* getArray() const;
+    class IndexOutOfBoundException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+    };
 private:
-    int size;
+    T* array;
+    int size_n;
 };
 
 #include "Array.tpp"
