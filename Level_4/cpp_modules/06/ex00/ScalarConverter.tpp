@@ -61,14 +61,22 @@ bool isInteger(const std::string& str) {
 }
 
 Type find_type(std::string str){
-    if (str.size() == 1 && !isdigit(str[0]))
+    if (str.size() == 1 && !isdigit(str[0])){
+        //*static_cast<char*>(value) = str[0];
         return CHAR;
-    else if (isInteger(str))
+    }
+    else if (isInteger(str)){
+        //*static_cast<int*>(value) = std::stoi(str);
         return INT;
-    if (isFloat(str) && str[str.size()-1] == 'f')
+    }
+    if (isFloat(str) && str[str.size()-1] == 'f'){
+        //*static_cast<float*>(value) = std::stof(str);
         return FLOAT;
-    else if (isFloat(str))
+    }
+    else if (isFloat(str)){
+        //*static_cast<double*>(value) = std::stod(str);
         return DOUBLE;
+    }
     return ERROR;
 }
 
@@ -77,9 +85,15 @@ std::string print_type(Type type){
     return array[type];
 }
 
+void print_char(char c){
+    if (isprint(c))
+        std::cout << "char: " << c << std::endl;
+    else
+        std::cout << "char: Non displayable" << std::endl;
+}
+
 // Member functions
 void ScalarConverter::convert(std::string str){
-    std::cout << "ScalarConverter convert called with " << str << std::endl;
     Type type = find_type(str);
     if (type == ERROR){
         std::cout << "Arg is none of the correct ones, Error" << std::endl;

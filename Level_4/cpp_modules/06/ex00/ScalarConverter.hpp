@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SCALARCONVERTER_HPP
+# define SCALARCONVERTER_HPP
 
 #include <iostream>
 #include <string>
@@ -14,3 +15,6 @@ public:
     virtual void not_a_class() = 0;
 };
 
+#include "ScalarConverter.tpp"
+
+#endif

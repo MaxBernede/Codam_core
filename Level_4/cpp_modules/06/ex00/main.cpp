@@ -1,11 +1,10 @@
 #include "ScalarConverter.hpp"
 
-
 int main(int argc, char **argv){
-	//ScalarConverter a;
-	if (argc == 2)
-		ScalarConverter::convert(argv[1]);
-	else
-		std::cout << "Usage: ./convert [value]" << std::endl;
+	for (int i = 1; i < argc; ++i)
+	{
+		std::cout << "Testing [" + std::string(argv[i]) + ']' << std::endl;
+		ScalarConverter::convert(std::string(argv[i]));
+	}
 	return 0;
 }
