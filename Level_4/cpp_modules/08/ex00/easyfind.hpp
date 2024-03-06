@@ -5,7 +5,7 @@
 #include <string>
 
 template <typename T>
-int easyfind(T, int);
+int *easyfind(T &, int);
 
 #include "easyfind.tpp"
 
