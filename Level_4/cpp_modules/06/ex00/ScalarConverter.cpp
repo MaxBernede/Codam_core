@@ -1,5 +1,10 @@
 #include "ScalarConverter.hpp"
 
+//!So we can't instantiate it (private)
+ScalarConverter::ScalarConverter(){
+    ;
+}
+
 //! PRINTS
 static void print_char(char ch)
 {

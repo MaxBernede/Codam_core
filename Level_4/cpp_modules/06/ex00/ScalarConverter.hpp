@@ -9,6 +9,8 @@ enum Type { CHAR, INT, FLOAT, DOUBLE, ERROR};
 class ScalarConverter {
 public:
     static void convert(const std::string& str);
+private:
+    ScalarConverter();
 };
 
 #endif

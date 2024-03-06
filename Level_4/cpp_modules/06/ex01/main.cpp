@@ -1,9 +1,5 @@
 #include "Serializer.hpp"
-
 #include <iostream>
-
-//static void	testSerializer(double val, const char *str);
-
 
 int	main(void)
 {
@@ -26,29 +22,3 @@ int	main(void)
     // std::cout << "Value through pointer: " << *ptr_again << std::endl;
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	testSerializer(23.23, "Lorem ipsum");
-// 	return (0);
-// }
-
-// static void	testSerializer(double val, const char *str)
-// {
-// 	Data		file;
-// 	uintptr_t	raw = Serializer::serialize(&file);
-// 	Data		*ptr = Serializer::deserialize(raw);
-// 	Data		*comp = &file;
-
-// 	file.value = val;
-// 	ptr->str = str;
-// 	std::cout << "Address" << std::endl;
-// 	std::cout	<< "file\t"	<< &file	<< '\n'
-// 				<< "ptr\t"	<< ptr		<< '\n'
-// 				<< "comp\t"	<< comp		<< '\n'
-// 				<< "raw\t"	<< raw		<< '\n';
-// 	std::cout << "Content" << std::endl;
-// 	std::cout	<< "file\t"	<< file.value	<< '\t'	<< file.str	<< '\n'
-// 				<< "ptr\t"	<< ptr->value	<< '\t'	<< ptr->str	<< '\n'
-// 				<< std::flush;
-// }
