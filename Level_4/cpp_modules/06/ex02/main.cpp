@@ -57,6 +57,7 @@ int	main(void)
 	identify(base);
 	std::cout << "Identify by address: ";
 	identify(*base);
+	delete base;
 	return (0);
 }
 
