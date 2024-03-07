@@ -1,50 +1,27 @@
-#include "Array.hpp"
-
+#include "MutantStack.hpp"
+#include <stack>
 int main()
 {
-    Array<int> intArray;
-    std::cout << "Construction of an empty array" << std::endl;
-    intArray.print();
-    intArray[0] = 42;
-    intArray.print();
-    std::cout << "Size of the array: " << intArray.size() << std::endl;
-    std::cout << std::endl;
-
-    //test for creation of an array of size 5
-    {
-    std::cout << "Construction of an array of size 5" << std::endl;
-    Array<int> neww(5);
-    neww.print();
-    std::cout << "Size of the array: " << neww.size() << std::endl;
-    }
-    std::cout << std::endl;
-
-    //test for overloaded constructor
-    {
-    Array<int> neww;
-    neww = intArray;
-    neww.print();
-    neww[0] = 21;
-    neww.print();
-    intArray.print();
-    }
-    std::cout << std::endl;
-
-    //test for copy constructor
-    {
-    Array<int> neww(intArray);
-    neww.print();
-    neww[0] = 111;
-    neww.print();
-    intArray.print();
-    }
-    std::cout << std::endl;
-
-    //test for exception
-    {
-    Array<int> neww(5);
-    neww[5] = 42;
-    }
-
-    return 0;
+MutantStack<int> mstack;
+mstack.push(5);
+mstack.push(17);
+std::cout << mstack.top() << std::endl;
+mstack.pop();
+std::cout << mstack.size() << std::endl;
+mstack.push(3);
+mstack.push(5);
+mstack.push(737);
+//[...]
+mstack.push(0);
+// MutantStack<int>::iterator it = mstack.begin();
+// MutantStack<int>::iterator ite = mstack.end();
+// ++it;
+// --it;
+// while (it != ite)
+// {
+// std::cout << *it << std::endl;
+// ++it;
+// }
+std::stack<int> s(mstack);
+return 0;
 }
