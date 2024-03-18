@@ -50,6 +50,48 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj) {
     *this = obj;
 }
 
+bool compareDates(const std::string& date1, const std::string& date2) {
+    // Compare year
+    if (date1.substr(0, 4) != date2.substr(0, 4)) {
+        return date1.substr(0, 4) <= date2.substr(0, 4);
+    }
+    // Compare month
+    if (date1.substr(5, 2) != date2.substr(5, 2)) {
+        return date1.substr(5, 2) <= date2.substr(5, 2);
+    }
+    // Compare day
+    return date1.substr(8, 2) <= date2.substr(8, 2);
+}
+
+void print_exact(std::string coins, float value) {
+    float price = std::stof(coins);
+    if (price < 0)
+        std::cout << "Error: negative price." << std::endl;
+    price = price * value;
+    std::cout << price << std::endl;
+}
+
+void BitcoinExchange::print_price(std::string date, float value) {
+    std::vector<std::string> tmp;
+    for (auto &i : _datas) {
+        if (!i[1].length() || !i[0].length()){
+            std::cout << "Error: values." << std::endl;
+            return;
+        }
+        if (i[0] == date) {
+            print_exact(i[1], value);
+            return;
+        }
+        if (compareDates(i[0], date))
+            tmp = i;
+        else{
+            print_exact(tmp[1], value);
+            return;
+        }
+    }
+    std::cout << "Error: date not found." << std::endl;
+}
+
 bool isValidDate(const std::string& date) {
     // Regular expression to match "YYYY-MM-DD" format
     std::regex pattern("^\\d{4}-\\d{2}-\\d{2}$");
@@ -57,8 +99,7 @@ bool isValidDate(const std::string& date) {
 }
 
 bool isValidDays(const std::string& months, const std::string& days) {
-    // Regular expression to match "YYYY-MM-DD" format
-    std::cout << "months: " << months << " days: " << days << std::endl;
+    //std::cout << "months: " << months << " days: " << days << std::endl;
     int m = std::stoi(months);
     int d = std::stoi(days);
     if (m > 12 || m < 1)
@@ -68,7 +109,7 @@ bool isValidDays(const std::string& months, const std::string& days) {
     return true;
 }
 
-int check_errors(std::string date, std::string value, float *price) {
+int BitcoinExchange::check_errors(std::string date, std::string value, float *price) {
     //std::cout << "date: " << date << " value: " << value << std::endl;
     if (!isValidDate(date) || !isValidDays(date.substr(5, 2), date.substr(8, 2))){
         std::cout << "Error: bad date format." << std::endl;
@@ -87,6 +128,8 @@ int check_errors(std::string date, std::string value, float *price) {
         std::cout << "Error: not a positive number." << std::endl;
         return 1;
     }
+    std::cout << date << " => " << *price << " = ";
+    print_price(date, *price);
     return 0;
 }
 

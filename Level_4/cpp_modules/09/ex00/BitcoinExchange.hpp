@@ -23,6 +23,8 @@ public:
     void    printDatas();
     int     file_working(std::string);
     void    checkDatas(std::string);
+    void    print_price(std::string, float);
+    int     check_errors(std::string date, std::string value, float *price);
 private:
     std::vector<std::vector<std::string>> _datas;
     std::ifstream _file;
