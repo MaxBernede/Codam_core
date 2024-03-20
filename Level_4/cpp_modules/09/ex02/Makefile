@@ -1,4 +1,4 @@
-NAME := exe
+NAME := PmergeMe
 CXX := c++
 
 CXXFLAGS := -std=c++11 -fsanitize=address -g #-Wall -Wextra -Werror
