@@ -21,12 +21,12 @@ int main( void ) {
 	easyfind(arr, 7);
     std::cout << std::endl;
 	}
-	{
-	std::map<int, int> mapTest;
-	mapTest[1] = 10;
-	mapTest[2] = 20;
-	easyfind(mapTest, 5);
-	easyfind(mapTest, 10);
-	}
+	// {
+	// std::map<int, int> mapTest;
+	// mapTest[1] = 10;
+	// mapTest[2] = 20;
+	// easyfind(mapTest, 5);
+	// easyfind(mapTest, 10);
+	// }
 	return 0;
 }
