@@ -28,9 +28,5 @@ int main( void ) {
 	easyfind(mapTest, 5);
 	easyfind(mapTest, 10);
 	}
-	// {
-	// int i = 7;
-	// easyfind(i, 5);
-	// }
 	return 0;
 }

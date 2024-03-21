@@ -49,8 +49,10 @@ int Span::shortestSpan(){
     std::sort(tmp.begin(), tmp.end());
     int min = INT32_MAX;
     for (int i = 0; i < (int)tmp.size() - 1; i++){
-        if (tmp[i + 1] - tmp[i] < min)
+        if (tmp[i + 1] - tmp[i] < min){
             min = tmp[i + 1] - tmp[i];
+            //std::cout << tmp[i] << " " << tmp[i + 1] << std::endl;
+        }
     }
     return min;
 }
