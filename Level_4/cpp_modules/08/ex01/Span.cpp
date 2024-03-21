@@ -33,6 +33,16 @@ Span::Span(const Span &obj) {
 }
 
 //Member functions
+
+void Span::addList(std::vector<int> list){
+    if (array.size() + list.size() <= N){
+        array.insert(array.end(), list.cbegin(), list.cend());
+    }
+    else
+        throw std::runtime_error("Too much arguments");
+
+}
+
 void Span::addNumber(int i){
     if (array.size() < N){
         array.push_back(i);

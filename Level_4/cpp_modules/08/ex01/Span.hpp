@@ -15,6 +15,7 @@ public:
     ~Span();
 
     void addNumber(int n);
+    void addList(std::vector<int> list);
     int shortestSpan();
     int longestSpan();
     void show_array();
