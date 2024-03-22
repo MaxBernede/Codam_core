@@ -11,15 +11,17 @@
 class PmergeMe {
 public:
     PmergeMe(char **av);
-    PmergeMe() = delete;
     ~PmergeMe();
-    PmergeMe(const PmergeMe &obj) = delete;
-    PmergeMe &operator=(const PmergeMe &obj) = delete;
 
+    PmergeMe(const PmergeMe &obj);
+    PmergeMe &operator=(const PmergeMe &obj);
+
+    int  add_number(char *nb);
     void print_first(std::string str);
     void calculate_list();
     void calculate_deque();
 private:
+    PmergeMe();
     std::list<int> _list;
     std::deque<int> _deque;
     std::string _duration_list;
