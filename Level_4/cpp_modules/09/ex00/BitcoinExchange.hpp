@@ -5,8 +5,9 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include <vector>
+#include <map>
 #include <regex>
+
 
 class BitcoinExchange {
 public:
@@ -26,7 +27,7 @@ public:
     void    print_price(std::string, float);
     int     check_errors(std::string date, std::string value, float *price);
 private:
-    std::vector<std::vector<std::string>> _datas;
+    std::map<std::string, std::string> _datas;
     std::ifstream _file;
     std::string _filename;
 };

@@ -12,7 +12,7 @@ int BitcoinExchange::file_working(std::string name) {
             std::string part1, part2;
             if (std::getline(ss, part1, ',')) {
                 if (std::getline(ss, part2, ',')){
-                    _datas.push_back({part1, part2});
+                    _datas.insert({part1, part2});
                 }
             }
         }
@@ -72,20 +72,25 @@ void print_exact(std::string coins, float value) {
 }
 
 void BitcoinExchange::print_price(std::string date, float value) {
-    std::vector<std::string> tmp;
+    std::map<std::string, std::string> tmp;
     for (auto &i : _datas) {
-        if (!i[1].length() || !i[0].length()){
+        if (!i.first.length() || !i.second.length()){
             std::cout << "Error: values." << std::endl;
             return;
         }
-        if (i[0] == date) {
-            print_exact(i[1], value);
+        if (i.first == date) {
+            print_exact(i.second, value);
             return;
         }
-        if (compareDates(i[0], date))
-            tmp = i;
+        if (compareDates(i.first, date))
+            if (tmp.empty())
+                tmp.insert(i);
+            else{
+                tmp.clear();
+                tmp.insert(tmp.begin(), i);
+            }
         else{
-            print_exact(tmp[1], value);
+            print_exact(tmp.begin()->second, value);
             return;
         }
     }
@@ -171,5 +176,5 @@ void BitcoinExchange::checkDatas(std::string file) {
 
 void BitcoinExchange::printDatas() {
     for (auto &i : _datas)
-        std::cout << i[0] << " " << i[1] << std::endl;
+        std::cout << i.first << " " << i.second << std::endl;
 }
