@@ -26,7 +26,7 @@ int BitcoinExchange::file_working(std::string name) {
 }
 
 // Constructors and Destructor
-BitcoinExchange::BitcoinExchange(std::string n) : _datas(0), _file(0), _filename(n){
+BitcoinExchange::BitcoinExchange(std::string n) : _filename(n){
     std::cout << "BitcoinExchange Constructor called" << std::endl;
     if (file_working(n) == 1)
         exit(1);

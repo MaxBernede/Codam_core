@@ -6,7 +6,7 @@ int main( void )
     {
     std::cout << "Test adding list" << std::endl;
     Span S(5);
-    std::vector<int> list = {1, 2, 3, 4, 5};
+    std::vector<int> list = {1, 2, 3, 4, 5, 6};
     S.addList(list);
     S.show_array();
     }

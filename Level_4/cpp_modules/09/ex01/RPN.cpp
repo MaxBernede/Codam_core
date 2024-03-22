@@ -19,7 +19,7 @@ int RPN::operation(std::stack<std::string> *stak, std::string token, std::string
         std::cerr << "Error: " << e.what() << ": one of the arg is not valid" << std::endl;
         return 1;
     }
-    int result;
+    int result = 0;
     if (token == "+")
         result = n1 + n2;
     else if (token == "-")

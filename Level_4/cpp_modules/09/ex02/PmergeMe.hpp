@@ -3,16 +3,27 @@
 
 #include <iostream>
 #include <string>
-#include <stack>
-#include <sstream>
+#include <list>
+#include <deque>
+#include <chrono>
+#include <algorithm>
 
 class PmergeMe {
 public:
+    PmergeMe(char **av);
     PmergeMe() = delete;
-    PmergeMe(std::string) = delete;
-    ~PmergeMe() = delete;
+    ~PmergeMe();
     PmergeMe(const PmergeMe &obj) = delete;
     PmergeMe &operator=(const PmergeMe &obj) = delete;
+
+    void print_first(std::string str);
+    void calculate_list();
+    void calculate_deque();
+private:
+    std::list<int> _list;
+    std::deque<int> _deque;
+    std::string _duration_list;
+    std::string _duration_deque;
 
 };
 

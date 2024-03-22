@@ -1,7 +1,7 @@
 NAME := RPN
 CXX := c++
 
-CXXFLAGS := -std=c++11 -fsanitize=address -g #-Wall -Wextra -Werror
+CXXFLAGS := -std=c++11 -Wall -Wextra -Werror -fsanitize=address -g 
 RM := rm -rf
 
 SRC := $(wildcard *.cpp)
