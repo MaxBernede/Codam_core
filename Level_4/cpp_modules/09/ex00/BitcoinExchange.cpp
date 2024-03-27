@@ -27,13 +27,14 @@ int BitcoinExchange::file_working(std::string name) {
 
 // Constructors and Destructor
 BitcoinExchange::BitcoinExchange(std::string n) : _filename(n){
-    std::cout << "BitcoinExchange Constructor called" << std::endl;
+    //std::cout << "BitcoinExchange Constructor called" << std::endl;
     if (file_working(n) == 1)
         exit(1);
 }
 
 BitcoinExchange::~BitcoinExchange() {
-    std::cout << "BitcoinExchange Destructor called" << std::endl;
+    //std::cout << "BitcoinExchange Destructor called" << std::endl;
+    ;
 }
 
 // Canonical form
@@ -41,6 +42,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj) {
     std::cout << "BitcoinExchange Operator Overload called" << std::endl;
     if (this != &obj) {
         _datas = obj._datas;
+        _filename = obj._filename;
     }
     return *this;
 }
@@ -51,6 +53,7 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj) {
 }
 
 bool compareDates(const std::string& date1, const std::string& date2) {
+    // ASCII comparison to know if date1 is before date2
     // Compare year
     if (date1.substr(0, 4) != date2.substr(0, 4)) {
         return date1.substr(0, 4) <= date2.substr(0, 4);
@@ -65,8 +68,10 @@ bool compareDates(const std::string& date1, const std::string& date2) {
 
 void print_exact(std::string coins, float value) {
     float price = std::stof(coins);
-    if (price < 0)
+    if (price < 0){
         std::cout << "Error: negative price." << std::endl;
+        return ;
+    }
     price = price * value;
     std::cout << price << std::endl;
 }
@@ -94,11 +99,15 @@ void BitcoinExchange::print_price(std::string date, float value) {
             return;
         }
     }
-    std::cout << "Error: date not found." << std::endl;
+    if (!tmp.empty())
+        print_exact(tmp.begin()->second, value);
+    else
+        std::cout << "Error: no data." << std::endl;
 }
 
 bool isValidDate(const std::string& date) {
     // Regular expression to match "YYYY-MM-DD" format
+    // "\\d" is a digit, "{n}" is the number of digits
     std::regex pattern("^\\d{4}-\\d{2}-\\d{2}$");
     return std::regex_match(date, pattern);
 }
@@ -117,9 +126,10 @@ bool isValidDays(const std::string& months, const std::string& days) {
 int BitcoinExchange::check_errors(std::string date, std::string value, float *price) {
     //std::cout << "date: " << date << " value: " << value << std::endl;
     if (!isValidDate(date) || !isValidDays(date.substr(5, 2), date.substr(8, 2))){
-        std::cout << "Error: bad date format." << std::endl;
+        std::cout << "Error: bad input" << date << std::endl;
         return 1;
     }
+    // length of value is not possible because max value is 1000
     if (value.length() > 5){
         std::cout << "Error: too large number." << std::endl;
         return 1;
@@ -168,7 +178,10 @@ void BitcoinExchange::checkDatas(std::string file) {
                 continue;
         }
         else {
-            std::cout << "Error: bad file format." << std::endl;
+            if (date != "")
+                std::cout << "Error: bad input => " << date << std::endl;
+            else
+                std::cout << "Error: bad input" << std::endl;
             continue;
         }
     }
