@@ -126,7 +126,7 @@ bool isValidDays(const std::string& months, const std::string& days) {
 int BitcoinExchange::check_errors(std::string date, std::string value, float *price) {
     //std::cout << "date: " << date << " value: " << value << std::endl;
     if (!isValidDate(date) || !isValidDays(date.substr(5, 2), date.substr(8, 2))){
-        std::cout << "Error: bad input" << date << std::endl;
+        std::cout << "Error: bad input => " << date << std::endl;
         return 1;
     }
     // length of value is not possible because max value is 1000
