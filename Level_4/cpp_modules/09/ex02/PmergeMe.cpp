@@ -37,7 +37,7 @@ PmergeMe::PmergeMe(char **av) {
 	calculate_vector();
 	calculate_deque();
 	print_first("After: ");
-	std::cout << "Time to process a range of " << _vector.size() << " elements: with std::list : " << _duration_vector << " us" << std::endl;
+	std::cout << "Time to process a range of " << _vector.size() << " elements: with std::vector : " << _duration_vector << " us" << std::endl;
 	std::cout << "Time to process a range of " << _deque.size() << " elements: with std::deque : " << _duration_deque << " us" << std::endl;
 }
 
