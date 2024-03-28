@@ -95,6 +95,10 @@ void BitcoinExchange::print_price(std::string date, float value) {
                 tmp.insert(tmp.begin(), i);
             }
         else{
+            if (!tmp.empty()){
+                std::cout << "Error: no data." << std::endl;
+                return;
+            }
             print_exact(tmp.begin()->second, value);
             return;
         }
